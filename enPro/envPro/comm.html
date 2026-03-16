@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="绿色环保平台 - 践行环保理念，乐享绿色人生">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>环保社区 - 绿色环保平台</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/comm.css">
+<link rel="stylesheet" href="css/background.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/color-green.css" id="colors" />
+</head>
+
+<body>
+<header>
+	<nav class="navbar clean-main-menu" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img class="logo" id="logo" src="images/logo.png" alt="绿色环保" height="41px"></a>
+			</div>
+			<div id="nav-menu" class="navbar-collapse collapse" role="navigation">
+				<ul class="nav navbar-nav clean-menu-wrapper">
+					<li class="active"><a href="index.html">首页</a></li>
+					<li><a href="concept.html">环保理念</a></li>
+					<li><a href="lc.html">低碳出行</a></li>
+					<li><a href="recycle.html">回收分类</a></li>
+					<li><a href="comm.html">环保社区</a></li>
+					<li><a href="infor.html">个人中心</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<div class="title-background">
+    <div class="container">
+        <div class="title-content">
+            <h1><span class="clean-color-contras">绿意社区 - 你我共建</span></h1>
+            <div class="clean-line"></div>
+            <p>携手守护生态，让绿色融入生活的每一处</p>
+        </div>
+    </div>
+</div>
+
+<section id="community" class="community-section">
+    <div class="container">
+        <h2 class="text-center" style="margin-bottom: 30px; color: #4CAF50;">环保社区动态</h2>
+        
+        <div class="row">
+            <div class="col-md-8 dynamic-container">
+                <div class="dynamic-tabs">
+                    <div class="tab-item active" data-tab="public">
+                        <i class="fa fa-users"></i> 社区公开动态
+                    </div>
+                    <div class="tab-item" data-tab="my-all">
+                        <i class="fa fa-user"></i> 我的所有动态
+                    </div>
+                </div>
+
+                <!-- 社区动态列表 -->
+                <div class="dynamic-list" id="dynamicList">
+                    <!-- 动态列表会通过JS动态生成 -->
+                    <div class="text-center" id="emptyTip">
+                        <i class="fa fa-leaf" style="font-size: 48px; color: #4CAF50; margin-bottom: 15px;"></i>
+                        <p>暂无社区动态，快来发布第一条环保动态吧！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="post-card" id="postDynamicCard">
+                    <h4><i class="fa fa-pencil-square-o"></i> 发布环保动态</h4>
+                    <hr>
+                    <form id="dynamicPostForm" class="post-form">
+                        <div class="form-group">
+                            <textarea class="form-control" id="dynamicContent" placeholder="分享你的环保行动、心得或建议..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dynamicImages"><i class="fa fa-image"></i> 上传图片（可选）</label>
+                            <input type="file" id="dynamicImages" accept="image/*" multiple>
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        <!-- 权限选择 -->
+                        <div class="form-group privacy-select">
+                            <label><i class="fa fa-lock"></i> 动态权限：</label>
+                            <label class="privacy-label">
+                                <input type="radio" name="privacy" value="public" checked> 
+                                <i class="fa fa-globe"></i> 公开
+                            </label>
+                            <label class="privacy-label">
+                                <input type="radio" name="privacy" value="private"> 
+                                <i class="fa fa-lock"></i> 私人
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-green btn-block">
+                            <i class="fa fa-paper-plane"></i> 发布动态
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="background-two">
+	<div class="container">
+		<div class="row">
+			<div class="clean-footer-content">
+				<div class="clean-footer-logo wow bounceIn" data-wow-offset="0">
+					<a href="index.html">
+						<img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
+					</a>
+				</div>
+                 <div class="">队名：3Q队</div>
+                <div class="">电子邮箱：xxxxxxxxxx@qq.com</div>
+                <div class="">联系电话：xxxx-xxxxxx</div>
+				<p class="clean-copyright-info">Copyright &copy; 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
+				<ul class="clean-footer-social-info">
+					<li><a href=""><i class="fa fa-weixin"></i></a></li>
+					<li><a href=""><i class="fa fa-weibo"></i></a></li>
+					<li><a href=""><i class="fa fa-qq"></i></a></li>
+					<li><a href=""><i class="fa fa-envelope"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/comm.js"></script>
+<script src="js/dingbu.white.js"></script>
+<script src="js/comm.new.js"></script>
+
+</body>
+</html>

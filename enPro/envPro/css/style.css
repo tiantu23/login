@@ -1,0 +1,683 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* =======================================================
+*
+* 	Template Style 
+*
+* ======================================================= */
+body {
+  font-family: "Noto Sans SC", "Roboto", Arial, sans-serif; 
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  background: #ececec;
+}
+
+#page {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+#page .page-inner {
+  max-width: 1200px;
+  background: #fff;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+a {
+  color: #2e7d32;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+a:hover, a:active, a:focus {
+  color: #2e7d32;
+  outline: none;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+  color: #000;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+}
+
+::selection {
+  color: #fff;
+  background: #2e7d32;
+}
+
+.gtco-container {
+  max-width: 1100px;
+  position: relative;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#gtco-header {
+  background: #fdd035;
+}
+@media screen and (max-width: 768px) {
+  #gtco-header.gtco-cover {
+    height: inherit !important;
+    padding: 3em 0 !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  #gtco-header .text-left {
+    text-align: center !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  #gtco-header .btn {
+    display: block;
+    width: 100%;
+  }
+}
+#gtco-header .mt-text {
+  margin-top: 7em;
+  margin-bottom: 3em;
+}
+@media screen and (max-width: 768px) {
+  #gtco-header .mt-text {
+    margin-top: 0;
+  }
+}
+#gtco-header .intro-text-small {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: .15em;
+  display: block;
+  margin-bottom: 10px;
+}
+#gtco-header h1, #gtco-header h2 {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+#gtco-header h1 {
+  margin-bottom: 0px;
+  font-size: 59px;
+  line-height: 1;
+  font-weight: 300;
+}
+@media screen and (max-width: 768px) {
+  #gtco-header h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+}
+#gtco-header h2 {
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+#gtco-header .form-wrap {
+  position: relative;
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+}
+#gtco-header .form-wrap .tab-menu {
+  padding: 0 !important;
+  margin: 0 0 -10px 0 !important;
+  width: 100%;
+  float: left;
+  z-index: 12;
+  position: relative;
+}
+#gtco-header .form-wrap .tab-menu li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline;
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+#gtco-header .form-wrap .tab-menu li a {
+  padding: 10px 20px 20px 20px;
+  float: left;
+  width: 100%;
+  display: block;
+  background: rgba(255, 255, 255, 0.5);
+  color: #1a1a1a;
+}
+#gtco-header .form-wrap .tab-menu li a:hover {
+  color: #1a1a1a;
+}
+#gtco-header .form-wrap .tab-menu li.active a {
+  display: block;
+  padding: 10px 20px 20px 20px;
+  background: #fff;
+  color: #2e7d32;
+}
+#gtco-header .form-wrap .tab-menu li.gtco-first a {
+  border-top-left-radius: 7px;
+}
+#gtco-header .form-wrap .tab-menu li.gtco-second a {
+  border-top-right-radius: 7px;
+}
+#gtco-header .form-wrap .tab-content {
+  z-index: 10;
+  position: relative;
+  clear: both;
+  background: #fff;
+  padding: 30px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+#gtco-header .form-wrap .tab-content .tab-content-inner {
+  display: none;
+}
+#gtco-header .form-wrap .tab-content .tab-content-inner.active {
+  display: block;
+}
+
+#gtco-header,
+#gtco-counter {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.gtco-cover {
+  height: 900px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.gtco-cover a {
+  color: #2e7d32;
+}
+.gtco-cover a:hover {
+  color: white;
+}
+.gtco-cover .overlay {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.gtco-cover > .gtco-container {
+  position: relative;
+  z-index: 10;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover {
+    height: 600px;
+  }
+}
+.gtco-cover .display-t,
+.gtco-cover .display-tc {
+  height: 900px;
+  display: table;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover .display-t,
+  .gtco-cover .display-tc {
+    height: 600px;
+  }
+}
+.gtco-cover.gtco-cover-sm {
+  height: 600px;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover.gtco-cover-sm {
+    height: 400px;
+  }
+}
+.gtco-cover.gtco-cover-sm .display-t,
+.gtco-cover.gtco-cover-sm .display-tc {
+  height: 600px;
+  display: table;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover.gtco-cover-sm .display-t,
+  .gtco-cover.gtco-cover-sm .display-tc {
+    height: 400px;
+  }
+}
+.gtco-cover.gtco-cover-xs {
+  height: 500px;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover.gtco-cover-xs {
+    height: inherit !important;
+    padding: 3em 0;
+  }
+}
+.gtco-cover.gtco-cover-xs .display-t,
+.gtco-cover.gtco-cover-xs .display-tc {
+  height: 500px;
+  display: table;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .gtco-cover.gtco-cover-xs .display-t,
+  .gtco-cover.gtco-cover-xs .display-tc {
+    padding: 3em 0;
+    height: inherit !important;
+  }
+}
+
+#gtco-header .display-tc h2,
+.gtco-cover .display-tc h2 {
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  padding: 8px 30px;
+}
+.btn:hover, .btn:active, .btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-primary {
+  background: #2e7d32;
+  color: #fff;
+  border: 2px solid #2e7d32 !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background: #2e7d32 !important;
+  border-color: #2e7d32 !important;
+}
+.btn-primary.btn-outline {
+  background: transparent;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+}
+.btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.btn-primary1 {
+  background: #fbff7acf;
+  color: #a7a9a7;
+  border: 2px solid #fbff7acf !important;
+}
+.btn-primary1:hover, .btn-primary1:focus, .btn-primary1:active {
+  background: #fbff7acf !important;
+  border-color: #fbff7acf !important;
+}
+.btn-primary1.btn-outline {
+  background: transparent;
+  color: #fbff7acf;
+  border: 2px solid #fbff7acf;
+}
+.btn-primary1.btn-outline:hover, .btn-primary1.btn-outline:focus, .btn-primary1.btn-outline:active {
+  background: #fbff7acf;
+  color: #fff;
+}
+/* 1. 左上角logo样式 */
+.header-logo {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 999; /* 确保logo在最上层 */
+}
+.header-logo img {
+    width: 200px; /* 根据实际logo尺寸调整 */
+    height: auto;
+    
+}
+
+/* 2. 调整文字样式：放大+下移 */
+.custom-text-wrap {
+    margin-top: 0 !important; /* 重置原有margin */
+    height: 100%;
+    align-items: center;
+    display: flex;
+}
+.custom-text-content {
+    margin-top: 150px !important; /* 文字向下移动 */
+    margin-bottom: 0 !important;
+}
+.custom-text-content .intro-text-small {
+    font-size: 20px !important; /* 小文字放大 */
+    letter-spacing: 0.2em !important;
+    margin-bottom: 20px !important;
+}
+.custom-text-content h1 {
+    font-size: 72px !important; /* 主标题放大 */
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 3. 登录注册框移到中下位置 */
+.custom-form-wrap {
+    margin-top: 185px !important; /* 表单向下移动到中下 */
+    transform: translateY(10%); /* 微调垂直位置 */
+}
+
+/* 4. 背景图片微动效基础样式 */
+#gtco-header {
+    background-attachment: fixed;
+    background-position: center 0%;
+    transition: background-position 1s ease;
+}
+
+/* 5. 响应式适配（移动端） */
+@media screen and (max-width: 768px) {
+    .header-logo img {
+        width: 80px;
+    }
+    .custom-text-content {
+        margin-top: 80px !important;
+        text-align: center !important;
+    }
+    .custom-text-content h1 {
+        font-size: 40px !important;
+    }
+    .custom-form-wrap {
+        margin-top: 80px !important;
+        transform: translateY(0);
+    }
+    #gtco-header.gtco-cover {
+        height: 800px !important;
+    }
+}
+/* 全局重置 */
+.custom-layout {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* 1. 带透明背景的导航栏 */
+.custom-nav {
+    position: fixed; /* 固定导航栏 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 15px 0;
+    /* 透明背景 + 半透明遮罩 */
+    background: rgba(235, 233, 233, 0.3); 
+    backdrop-filter: blur(5px); /* 毛玻璃效果，增强透明质感 */
+    -webkit-backdrop-filter: blur(5px); /* 兼容webkit内核 */
+}
+.custom-nav .gtco-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 30px;
+}
+.nav-left h1 {
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+    font-weight: 500;
+}
+.nav-right .help-link {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-right .help-link:hover {
+    color: #fdd035;
+}
+
+/* 2. 主布局：左侧图片，右侧表单 */
+.main-container {
+    display: flex;
+    height: 100vh; /* 占满视口高度 */
+    margin-top: 0; /* 移除导航栏间距，让布局更紧凑 */
+}
+
+/* 左侧图片区域 */
+.left-image-section {
+    flex: 1; /* 占满剩余宽度 */
+    position: relative;
+    overflow: hidden;
+}
+.left-image-section .bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持图片比例，覆盖整个区域 */
+}
+/* 左侧文字样式 */
+.left-image-section .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #6aa483;
+    text-align: center;
+    z-index: 10;
+    text-shadow: 0 2px 10px rgba(48, 44, 44, 0.5); /* 文字阴影，提升可读性 */
+}
+.left-image-section .image-text h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    color: #FFF;
+}
+.left-image-section .image-text h1 {
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #FFF;
+}
+
+/* 右侧表单区域 */
+.right-form-section {
+    width: 450px; /* 固定表单宽度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: #fff;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1); /* 右侧阴影，提升层次感 */
+}
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* 3. 保留原表单的 tab 样式（关键：确保切换功能正常） */
+.form-wrap {
+    width: 100%;
+}
+.form-wrap .tab-menu {
+    padding: 0 !important;
+    margin: 0 0 -1px 0 !important;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+.form-wrap .tab-menu li {
+    flex: 1;
+    text-align: center;
+    list-style: none;
+}
+.form-wrap .tab-menu li a {
+    display: block;
+    padding: 10px 0;
+    color: #777;
+    text-decoration: none;
+    font-size: 18px;
+}
+.form-wrap .tab-menu li.active a {
+    color: #2e7d32;
+    border-bottom: 2px solid #2e7d32;
+}
+.form-wrap .tab-content {
+    padding: 20px 0;
+}
+.form-wrap .tab-content-inner {
+    display: none;
+}
+.form-wrap .tab-content-inner.active {
+    display: block;
+}
+
+/* 4. 按钮样式优化 */
+.login-btn {
+    margin-right: 15px !important;
+}
+.find-pwd-btn {
+    background: #66bb6a !important;
+    border-color: #66bb6a !important;
+    color: #fff !important;
+}
+.find-pwd-btn:hover {
+    background: #4caf50 !important;
+    border-color: #4caf50 !important;
+}
+
+/* 5. 响应式适配 */
+@media screen and (max-width: 992px) {
+    /* 移动端改为上下布局 */
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .left-image-section {
+        height: 400px;
+    }
+    .left-image-section .image-text h2 {
+        font-size: 22px;
+    }
+    .left-image-section .image-text h1 {
+        font-size: 40px;
+    }
+    .right-form-section {
+        width: 100%;
+        padding: 30px 20px;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .custom-nav .gtco-container {
+        padding: 0 20px;
+    }
+    .nav-left h1 {
+        font-size: 20px;
+    }
+    .nav-right .help-link {
+        font-size: 14px;
+    }
+    .left-image-section {
+        height: 300px;
+    }
+    .form-wrap {
+        padding: 0 10px;
+    }
+    .login-btn {
+        margin-right: 10px !important;
+    }
+}
+.left-image-section {
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            height: 100vh;
+            transition: background-image 0.8s ease-in-out; /* 图片切换动画 */
+        }
+        /* 隐藏原img标签，改用背景图实现切换 */
+        .left-image-section .bg-image {
+            display: none;
+        }
+        /* 文字层优化：始终居中，层级更高 */
+        .left-image-section .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            padding: 0 20px;
+        }
+        /* 图片切换提示 */
+        .scroll-tip {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 14px;
+            z-index: 2;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
+        }
+        /* 响应式适配 */
+        @media screen and (max-width: 992px) {
+            .left-image-section {
+                height: 400px;
+            }
+        }
+
+        /* 实时验证提示信息样式 */
+        .validation-message {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            padding: 3px 5px;
+        }
+
+        .validation-message.valid {
+            color: #2e7d32;
+            background-color: rgba(46, 125, 50, 0.1);
+            border-radius: 3px;
+        }
+
+        .validation-message.invalid {
+            color: #d32f2f;
+            background-color: rgba(211, 47, 47, 0.1);
+            border-radius: 3px;
+        }

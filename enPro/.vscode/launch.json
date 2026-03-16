@@ -1,0 +1,57 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Edge",
+            "request": "launch",
+            "type": "msedge",
+            "url": "http://localhost:8082",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open index.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\index.html"
+        },
+         {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open comm.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\comm.html"
+        },
+         {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open infor.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\infor.html"
+        },
+         {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open concept.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\concept.html"
+        },
+         {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open lc.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\lc.html"
+        },
+         {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open recycle.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\recycle.html"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open login.html",
+            "file": "d:\\web比赛\\fzhu\\enPro\\envPro\\login.html"
+        }
+    ]
+}

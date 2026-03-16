@@ -1,0 +1,186 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft Yahei", "微软雅黑", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 标题样式 */
+.clean-section-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.clean-color-contras {
+    color: #28a745;
+}
+
+.clean-line {
+    width: 80px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 0 auto 20px;
+}
+
+.clean-section-header p {
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* 左侧按钮组样式 */
+.content-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+/* 切换按钮样式 */
+.tab-btn {
+    padding: 15px 20px;
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.tab-btn:hover {
+    background-color: #e8f5e9;
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.tab-btn.active {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+}
+
+/* 内容区域样式 */
+.content-section {
+    display: none;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+/* 滚动容器样式 */
+.scroll-content {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+/* 滚动条样式优化 */
+.scroll-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.scroll-content::-webkit-scrollbar-thumb {
+    background: #28a745;
+    border-radius: 4px;
+}
+
+.scroll-content::-webkit-scrollbar-thumb:hover {
+    background: #218838;
+}
+
+.scroll-content {
+    scrollbar-width: thin;
+    scrollbar-color: #28a745 #f1f1f1;
+}
+
+/* 内容标题和段落样式 */
+.content-section h3 {
+    color: #28a745;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 20px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.content-section p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.content-section strong {
+    color: #333;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .content-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .tab-btn {
+        width: calc(50% - 6px);
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .carousel-inner img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .clean-section-header h1 {
+        font-size: 26px;
+    }
+
+    .carousel-inner img {
+        height: 300px;
+    }
+
+    .content-section {
+        padding: 20px;
+    }
+
+    .tab-btn {
+        width: 100%;
+    }
+}

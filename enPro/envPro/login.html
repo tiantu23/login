@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login & Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html.
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.imgs.css">
+    <script src="js/jquery.min.login.js"></script>
+    <script src="js/bootstrap.min.login.js"></script>
+</head>
+<body class="custom-layout">
+
+    <div class="main-container">
+        <div class="left-image-section" id="bgImageContainer">
+            <img src="images/slider/1.jpg" alt="绿意生活背景" class="bg-image">
+            <div class="image-text">
+                <h2>欢迎使用绿意生活环保平台</h2>
+                <h1>一起享受绿色生活</h1>
+            </div>
+        </div>
+
+        <div class="right-form-section">
+            <div class="form-container">
+                <div class="form-wrap">
+                    <div class="tab">
+                        <ul class="tab-menu">
+                            <li><a href="#" data-tab="signup">注册</a></li>
+                            <li class="active"><a href="#" data-tab="login">登录</a></li>
+                            <li style="display: none;"><a href="#" data-tab="refind">找回密码</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-content-inner" data-content="signup">
+                                <form id="signupForm" action="#">
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="signup-username">用户名</label>
+                                            <input type="text" class="form-control" id="signup-username" required value="admin">
+                                            <span id="username-validation" class="validation-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="signup-phone">手机号</label>
+                                            <input type="text" class="form-control" id="signup-phone" required value="12345678901">
+                                            <span id="phone-validation" class="validation-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="signup-email">邮箱</label>
+                                            <input type="email" class="form-control" id="signup-email" required value="admin@test.com">
+                                            <span id="email-validation" class="validation-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-8">
+                                            <label for="signup-code">验证码</label>
+                                            <input type="text" class="form-control" id="signup-code" placeholder="请输入6位验证码" required>
+                                        </div>
+                                        <div class="col-md-4" style="margin-top: 24px;">
+                                            <button type="button" class="btn btn-secondary w-100" id="sendCodeBtn">发送验证码</button>
+                                        </div>
+                                    </div> 
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="signup-password">密码</label>
+                                            <input type="password" class="form-control" id="signup-password" required value="admin123">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="signup-password2">确认密码</label>
+                                            <input type="password" class="form-control" id="signup-password2" required value="admin123">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary signup-btn">注册</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- 登录表单（默认显示，含admin测试值） -->
+                            <div class="tab-content-inner active" data-content="login">
+                                <form id="loginForm" action="#">
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="login-username">用户名</label>
+                                            <input type="text" class="form-control" id="login-username"value="123" >
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="login-password">密码</label>
+                                            <input type="password" class="form-control" id="login-password"value="admin123" >
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <a id="forgotPasswordLink" style="color: #007bff; cursor: pointer;">忘记密码</a><hr>
+                                            <button type="submit" class="btn btn-primary login-btn">登录</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/forms.js"></script>
+
+    <!-- 忘记密码弹窗 -->
+    <div id="forgotPasswordModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">忘记密码</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="关闭">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- 第一步：输入邮箱 -->
+                    <div id="step1" class="reset-step">
+                        <div class="form-group">
+                            <label for="reset-email">邮箱地址</label>
+                            <input type="email" class="form-control" id="reset-email" placeholder="请输入您的邮箱">
+                            <span id="email-exists-validation" class="validation-message"></span>
+                        </div>
+                        <button id="checkEmailBtn" class="btn btn-primary btn-block">下一步</button>
+                    </div>
+                    
+                    <!-- 第二步：验证验证码 -->
+                    <div id="step2" class="reset-step" style="display: none;">
+                        <div class="form-group">
+                            <label for="reset-code">验证码</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="reset-code" placeholder="请输入验证码">
+                                <div class="input-group-append">
+                                    <button id="sendResetCodeBtn" class="btn btn-secondary" type="button">发送验证码</button>
+                                </div>
+                            </div>
+                            <span id="code-validation" class="validation-message"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button id="backToStep1Btn" class="btn btn-secondary">上一步</button>
+                            <button id="verifyCodeBtn" class="btn btn-primary">验证</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 第三步：设置新密码 -->
+                    <div id="step3" class="reset-step" style="display: none;">
+                        <div class="form-group">
+                            <label for="new-password">新密码</label>
+                            <input type="password" class="form-control" id="new-password" placeholder="请输入新密码">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">确认密码</label>
+                            <input type="password" class="form-control" id="confirm-password" placeholder="请再次输入新密码">
+                            <span id="password-validation" class="validation-message"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button id="backToStep2Btn" class="btn btn-secondary">上一步</button>
+                            <button id="resetPasswordBtn" class="btn btn-primary">重置密码</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

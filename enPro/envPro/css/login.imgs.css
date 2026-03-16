@@ -1,0 +1,28 @@
+.left-image-section {
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            height: 100vh;
+            transition: background-image 0.8s ease-in-out;
+        }
+        .left-image-section .bg-image {
+            display: none;
+        }
+        .left-image-section .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            padding: 0 20px;
+        }
+        /* 响应式适配 */
+        @media screen and (max-width: 992px) {
+            .left-image-section {
+                height: 400px;
+            }
+        }

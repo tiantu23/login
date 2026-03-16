@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="resources/c3p0/c3p0-0.9.5.5.jar"/>
+	<classpathentry kind="lib" path="resources/c3p0/mchange-commons-java-0.2.19.jar"/>
+	<classpathentry kind="lib" path="resources/druid/druid-1.2.14.jar"/>
+	<classpathentry kind="lib" path="resources/email/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="resources/email/additionnal.jar"/>
+	<classpathentry kind="lib" path="resources/email/commons-email-1.5.jar"/>
+	<classpathentry kind="lib" path="resources/email/javax.mail-1.6.2.jar"/>
+	<classpathentry kind="lib" path="resources/fileupload/cos.jar"/>
+	<classpathentry kind="lib" path="resources/fileupload/file.jar"/>
+	<classpathentry kind="lib" path="resources/fileupload/jspsmart.jar"/>
+	<classpathentry kind="lib" path="resources/fileupload/servletfileupload.jar"/>
+	<classpathentry kind="lib" path="resources/fileupload/spring-web-5.3.9.jar"/>
+	<classpathentry kind="lib" path="resources/jdbc/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="resources/jdbc/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="resources/jdbc/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="resources/jdbc/mysql-connector-java-8.0.31.jar"/>
+	<classpathentry kind="lib" path="resources/jdbctemplate/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="resources/jdbctemplate/spring-beans-5.3.9.jar"/>
+	<classpathentry kind="lib" path="resources/jdbctemplate/spring-core-5.3.9.jar"/>
+	<classpathentry kind="lib" path="resources/jdbctemplate/spring-jdbc-5.3.9.jar"/>
+	<classpathentry kind="lib" path="resources/jdbctemplate/spring-tx-5.3.9.jar"/>
+	<classpathentry kind="lib" path="resources/json/fastjson-1.2.83.jar"/>
+	<classpathentry kind="lib" path="resources/jstl/jakarta.servlet.jsp.jstl-2.0.0.jar"/>
+	<classpathentry kind="lib" path="resources/jstl/jakarta.servlet.jsp.jstl-api-2.0.0.jar"/>
+	<classpathentry kind="lib" path="resources/jstl/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="resources/jstl/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="resources/junit-4.13.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,313 @@
+.recycle-main-container {
+        display: flex;
+        margin: 20px auto;
+        max-width: 1200px;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .recycle-sidebar {
+        width: 200px;
+        flex-shrink: 0;
+    }
+    
+    .recycle-tab-btn {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        background: #f8f9fa;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .recycle-tab-btn.active {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+    
+    .recycle-tab-btn:hover:not(.active) {
+        background: #e9ecef;
+    }
+    
+    /* 右侧内容区 */
+    .recycle-content {
+        flex: 1;
+        min-height: 600px;
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .recycle-tab-panel {
+        display: none;
+    }
+    
+    .recycle-tab-panel.active {
+        display: block;
+    }
+    
+    /* 垃圾危害科普样式 */
+    .harm-section {
+        margin: 30px 0;
+        padding: 20px;
+        background: #fef8f8;
+        border-radius: 8px;
+    }
+    
+    .harm-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .harm-item {
+        padding: 15px;
+        background: white;
+        border-radius: 6px;
+        border-left: 4px solid #dc3545;
+    }
+    
+    /* AI图片识别样式 */
+    .ai-recognition {
+        margin: 30px 0;
+        padding: 20px;
+        background: #f0f9e8;
+        border-radius: 8px;
+    }
+    
+    .upload-area {
+        border: 2px dashed #28a745;
+        border-radius: 8px;
+        padding: 40px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+    }
+    
+    .upload-area:hover {
+        background: #e8f4ea;
+    }
+    
+    .upload-area i {
+        font-size: 48px;
+        color: #28a745;
+        margin-bottom: 15px;
+    }
+    
+    #upload-input {
+        display: none;
+    }
+    
+    .recognition-result {
+        margin-top: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 6px;
+        display: none;
+    }
+    
+    /* 回收利用分页样式 */
+    .material-card {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+  }
+  .material-img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .material-info {
+    padding: 15px;
+    flex: 1;
+  }
+  .material-category {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #e8f4fc;
+    color: #0066cc;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px 0;
+  }
+  .upload-area:hover {
+    border-color: #28a745;
+  }
+  #recognition-result {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    background: #f8f9fa;
+  }
+  .result-item {
+    margin-bottom: 10px;
+  }
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .page-btn {
+    padding: 5px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .page-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  .page-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+  }
+  .recycle-tab-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #f8f9fa;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .recycle-tab-btn.active {
+    background: #28a745;
+    color: white;
+  }
+  .recycle-tab-panel {
+    display: none;
+    padding: 20px;
+  }
+  .recycle-tab-panel.active {
+    display: block;
+  }
+  .recycle-main-container {
+    display: flex;
+    margin: 30px 0;
+    gap: 20px;
+  }
+  .recycle-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+  }
+  .recycle-content {
+    flex: 1;
+  }
+  @media (max-width: 768px) {
+    .recycle-main-container {
+      flex-direction: column;
+    }
+    .recycle-sidebar {
+      width: 100%;
+    }
+    .material-card {
+      flex-direction: column;
+    }
+    .material-img {
+      width: 100%;
+    }
+  }
+    
+    /* AI助手板块样式 */
+    .ai-assistant-panel {
+        height: 100%;
+    }
+    
+    /* 响应式适配 */
+    @media (max-width: 768px) {
+        .recycle-main-container {
+            flex-direction: column;
+        }
+        
+        .recycle-sidebar {
+            width: 100%;
+        }
+        
+        .harm-list {
+            grid-template-columns: 1fr;
+        }
+        
+        .recycle-materials {
+            grid-template-columns: 1fr;
+        }
+    }
+    .core-content-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 15px;
+        box-sizing: border-box;
+        min-height: calc(100vh - 300px); 
+    }
+    
+    .recycle-main-container {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        margin-bottom: 40px; 
+    }
+    
+    .recycle-sidebar {
+        width: 200px;
+        flex-shrink: 0;
+    }
+    
+    .recycle-content {
+        flex: 1;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    footer.background-two {
+        clear: both;
+        width: 100%;
+        padding: 40px 0;
+        margin-top: 50px; 
+        border-top: 1px solid #eee; 
+    }
+    
+    @media (max-width: 768px) {
+        .recycle-main-container {
+            flex-direction: column;
+        }
+        .recycle-sidebar {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .core-content-container {
+            padding: 20px 15px;
+            min-height: calc(100vh - 250px);
+        }
+    }
