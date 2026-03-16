@@ -1,0 +1,42 @@
+# 工作流名称
+name: Deploy to GitHub Pages
+
+# 触发条件：push 到 main 分支时执行
+on:
+  push:
+    branches: [ main ]  # 替换为你的分支名（如 master）
+
+# 执行权限
+permissions:
+  contents: write  # 允许写入仓库内容（部署必备）
+  pages: write     # 允许操作 GitHub Pages
+  id-token: write  # 用于身份验证
+
+# 工作流任务
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 运行环境（Ubuntu 最新版）
+    steps:
+      # 步骤1：拉取仓库代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 步骤2：安装 Node.js（前端项目必备，非前端可删除）
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # 适配你的项目 Node 版本
+          cache: 'npm'      # 缓存依赖，加速构建
+
+      # 步骤3：安装依赖 + 构建项目（非前端可删除）
+      - name: Install dependencies and build
+        run: |
+          npm install  # 安装依赖（yarn 项目替换为 yarn install）
+          npm run build  # 构建项目（替换为你的构建命令，如 vite build）
+
+      # 步骤4：部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4  # 主流 Pages 部署插件
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 自动生成的令牌，无需手动配置
+          publish_dir: ./dist  # 构建产物目录（关键！替换为你的实际目录，如 ./build、./public 或 ./docs）
