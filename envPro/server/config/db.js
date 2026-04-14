@@ -57,13 +57,24 @@ const supabase = {
         
         // 添加eq方法支持
         baseQuery.eq = (column, value) => {
-          return {
+          // 构建条件数组
+          const conditions = [{ column, value }];
+          
+          const buildQuery = (additionalConditions = []) => {
+            const allConditions = [...conditions, ...additionalConditions];
+            const whereClause = allConditions.map((cond, index) => `${cond.column} = $${index + 1}`).join(' AND ');
+            const params = allConditions.map(cond => cond.value);
+            return { whereClause, params };
+          };
+          
+          const result = {
             limit: (limit) => {
               // 执行带条件的查询
               return new Promise(async (resolve, reject) => {
                 try {
-                  const query = `SELECT ${columns} FROM ${tableName} WHERE ${column} = $1 LIMIT ${limit}`;
-                  const { rows } = await pool.query(query, [value]);
+                  const { whereClause, params } = buildQuery();
+                  const query = `SELECT ${columns} FROM ${tableName} WHERE ${whereClause} LIMIT ${limit}`;
+                  const { rows } = await pool.query(query, params);
                   resolve({ data: rows, error: null });
                 } catch (err) {
                   resolve({ data: null, error: err });
@@ -74,26 +85,48 @@ const supabase = {
               // 执行带条件的排序查询
               return new Promise(async (resolve, reject) => {
                 try {
+                  const { whereClause, params } = buildQuery();
                   const orderDirection = options.ascending ? 'ASC' : 'DESC';
-                  const query = `SELECT ${columns} FROM ${tableName} WHERE ${column} = $1 ORDER BY ${field} ${orderDirection}`;
-                  const { rows } = await pool.query(query, [value]);
+                  const query = `SELECT ${columns} FROM ${tableName} WHERE ${whereClause} ORDER BY ${field} ${orderDirection}`;
+                  const { rows } = await pool.query(query, params);
                   resolve({ data: rows, error: null });
                 } catch (err) {
                   resolve({ data: null, error: err });
                 }
               });
             },
+            // 支持链式调用多个eq方法
+            eq: (nextColumn, nextValue) => {
+              conditions.push({ column: nextColumn, value: nextValue });
+              return result;
+            },
             // 添加single属性支持（适配Supabase 2.0+）
             single: new Promise(async (resolve, reject) => {
               try {
-                const query = `SELECT ${columns} FROM ${tableName} WHERE ${column} = $1 LIMIT 1`;
-                const { rows } = await pool.query(query, [value]);
+                const { whereClause, params } = buildQuery();
+                const query = `SELECT ${columns} FROM ${tableName} WHERE ${whereClause} LIMIT 1`;
+                const { rows } = await pool.query(query, params);
                 resolve({ data: rows[0] || null, error: null });
               } catch (err) {
                 resolve({ data: null, error: err });
               }
-            })
+            }),
+            // 支持直接执行查询（当没有调用limit、order等方法时）
+            then: async (callback) => {
+              try {
+                const { whereClause, params } = buildQuery();
+                const query = `SELECT ${columns} FROM ${tableName} WHERE ${whereClause}`;
+                const { rows } = await pool.query(query, params);
+                return callback({ data: rows, error: null });
+              } catch (err) {
+                console.error('查询数据错误:', err);
+                return callback({ data: null, error: err });
+              }
+            }
           };
+          
+          // 支持直接await查询
+          return result;
         };
         
         return baseQuery;
@@ -101,40 +134,43 @@ const supabase = {
       // 插入方法
       insert: (dataArray) => {
         return {
-          select: (columns) => {
-            return new Promise(async (resolve, reject) => {
-              try {
-                // 处理批量插入
-                if (!Array.isArray(dataArray)) {
-                  dataArray = [dataArray];
-                }
-                
-                // 获取列名
-                const keys = Object.keys(dataArray[0]);
-                const columnNames = keys.join(', ');
-                
-                // 构建值的占位符和参数
-                const placeholders = dataArray.map((_, rowIndex) => {
-                  return '(' + keys.map((_, colIndex) => `$${rowIndex * keys.length + colIndex + 1}`).join(', ') + ')';
-                }).join(', ');
-                
-                // 构建参数数组
-                const params = [];
-                dataArray.forEach(data => {
-                  params.push(...Object.values(data));
+            select: (columns) => {
+                return new Promise(async (resolve, reject) => {
+                    try {
+                        // 处理批量插入
+                        if (!Array.isArray(dataArray)) {
+                            dataArray = [dataArray];
+                        }
+                        
+                        // 获取列名
+                        const keys = Object.keys(dataArray[0]);
+                        const columnNames = keys.join(', ');
+                        
+                        // 构建值的占位符和参数
+                        const placeholders = dataArray.map((_, rowIndex) => {
+                            return '(' + keys.map((_, colIndex) => `$${rowIndex * keys.length + colIndex + 1}`).join(', ') + ')';
+                        }).join(', ');
+                        
+                        // 构建参数数组
+                        const params = [];
+                        dataArray.forEach(data => {
+                            params.push(...Object.values(data));
+                        });
+                        
+                        // 处理columns参数，为空时返回所有列
+                        const returnColumns = columns ? columns : '*';
+                        
+                        // 执行插入查询
+                        const query = `INSERT INTO ${tableName} (${columnNames}) VALUES ${placeholders} RETURNING ${returnColumns}`;
+                        const { rows } = await pool.query(query, params);
+                        
+                        resolve({ data: rows, error: null });
+                    } catch (err) {
+                        console.error('插入数据错误:', err);
+                        resolve({ data: null, error: err });
+                    }
                 });
-                
-                // 执行插入查询
-                const query = `INSERT INTO ${tableName} (${columnNames}) VALUES ${placeholders} RETURNING ${columns}`;
-                const { rows } = await pool.query(query, params);
-                
-                resolve({ data: rows, error: null });
-              } catch (err) {
-                console.error('插入数据错误:', err);
-                resolve({ data: null, error: err });
-              }
-            });
-          }
+            }
         };
       },
       // 更新方法
@@ -202,22 +238,36 @@ const supabase = {
       },
       // 删除方法
       delete: () => {
-        return {
+        // 构建条件数组
+        const conditions = [];
+        
+        const buildQuery = () => {
+          const whereClause = conditions.map((cond, index) => `${cond.column} = $${index + 1}`).join(' AND ');
+          const params = conditions.map(cond => cond.value);
+          return { whereClause, params };
+        };
+        
+        const result = {
           eq: (column, value) => {
-            return new Promise(async (resolve, reject) => {
-              try {
-                // 执行删除查询
-                const query = `DELETE FROM ${tableName} WHERE ${column} = $1`;
-                const { rows } = await pool.query(query, [value]);
-                
-                resolve({ data: rows, error: null });
-              } catch (err) {
-                console.error('删除数据错误:', err);
-                resolve({ data: null, error: err });
-              }
-            });
+            conditions.push({ column, value });
+            return result;
+          },
+          // 执行删除操作
+          then: async (callback) => {
+            try {
+              const { whereClause, params } = buildQuery();
+              const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
+              const { rows } = await pool.query(query, params);
+              return callback({ data: rows, error: null });
+            } catch (err) {
+              console.error('删除数据错误:', err);
+              return callback({ data: null, error: err });
+            }
           }
         };
+        
+        // 支持直接执行（当没有链式调用时）
+        return result;
       }
     };
   }

@@ -55,162 +55,267 @@
 
 <!-- 个人中心主体内容 -->
 <div class="profile-container">
-    <!-- 个人信息头部 -->
-    <div class="profile-header text-center">
-        <!-- 头像区域 -->
-        <img src="images/girl.png" alt="用户头像" class="profile-avatar" id="currentAvatar" height="158px">
-        
-        <!-- 头像选择器（默认隐藏） -->
-        <div class="avatar-selector" id="avatarSelector">
-            <p class="text-muted">选择头像：</p>
-            <img src="images/girl.png" alt="女生头像" class="avatar-option" data-avatar="girl.png">
-            <img src="images/boy.png" alt="男生头像" class="avatar-option" data-avatar="boy.png">
-        </div>
-        <h2 class="profile-name" id="profileName">绿色践行者</h2>
-        <span class="profile-tag"><i class="fa fa-leaf"></i> 环保达人</span>
-        <button class="btn btn-warning ml-2" style="padding: 8px 20px; font-weight: 600;" id="logoutBtn">退出登录</button>
-
-        <!-- 新增：已发动态条数 -->
-        <div class="dynamic-count" id="dynamicCount"><i class="fa fa-comment-o"></i> 已发动态：<span id="dynamicNumber">0</span> 条</div>
-        <p class="mt-3 text-muted">加入时间：<span id="joinTime">2026-01-01</span> | 累计减少碳排放：<span id="carbonReduction">120</span>kg</p>
-    </div>
-
     <div class="row">
-        <!-- 左侧：基础信息 -->
-        <div class="col-md-6">
-            <!-- 账户基本信息 -->
-            <div class="info-card">
-                <h3 class="card-title"><i class="fa fa-user-circle-o"></i> 账户基本信息</h3>
-                <div class="info-item">
-                    <div class="info-label">用户名：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="usernameText">绿色践行者</span>
-                    </div>
+        <!-- 左侧：个人信息和导航 -->
+        <div class="col-md-4">
+            <!-- 个人信息头部 -->
+            <div class="profile-header text-center">
+                <!-- 头像区域 -->
+                <img src="images/girl.png" alt="用户头像" class="profile-avatar" id="currentAvatar" height="158px">
+                
+                <!-- 头像选择器（默认隐藏） -->
+                <div class="avatar-selector" id="avatarSelector">
+                    <p class="text-muted">选择头像：</p>
+                    <img src="images/girl.png" alt="女生头像" class="avatar-option" data-avatar="girl.png">
+                    <img src="images/boy.png" alt="男生头像" class="avatar-option" data-avatar="boy.png">
                 </div>
-                <div class="info-item">
-                    <div class="info-label">昵称：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="nicknameText">绿色守护者</span>
-                        <input type="text" class="edit-input" id="nickname" value="绿色守护者">
-                        <span class="edit-btn"><i class="fa fa-pencil"></i> 修改</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">电子邮箱：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="emailText">green_life@example.com</span>
-                        <input type="email" class="edit-input" id="emailInput" value="green_life@example.com">
-                        <span class="edit-btn"><i class="fa fa-pencil"></i> 修改</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">手机号码：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="phoneText">138****8888</span>
-                        <input type="tel" class="edit-input" id="phoneInput" value="13800008888">
-                        <span class="edit-btn"><i class="fa fa-pencil"></i> 修改</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">所在城市：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="cityText">北京市 朝阳区</span>
-                        <input type="text" class="edit-input" id="cityInput" value="北京市 朝阳区">
-                        <span class="edit-btn"><i class="fa fa-pencil"></i> 修改</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">生日：</div>
-                    <div class="info-value">
-                        <span class="value-text" id="birthdayText">未设置生日</span>
-                        <input type="date" class="edit-input" id="birthdayInput" value="">
-                        <span class="edit-btn"><i class="fa fa-pencil"></i> 修改</span>
-                    </div>
-                </div>   
-        <a href="javascript:void(0)" class="btn-green mt-2" id="editProfileBtn">编辑个人资料</a>
-        <button class="btn-green save-btn" id="saveProfileBtn">确认保存修改</button>
+                <br>
+                <!-- 上传头像按钮 -->
+                <button class="btn btn-sm btn-primary mt-2" id="uploadAvatarBtn" style="display: none;">上传头像</button>
+                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                <h2 class="profile-name" id="profileName">绿色践行者</h2>
+                <span class="profile-tag"><i class="fa fa-leaf"></i> 环保达人</span>
+                <button class="btn btn-warning ml-2" style="padding: 8px 20px; font-weight: 600;" id="logoutBtn">退出登录</button>
+
+                <!-- 新增：已发动态条数 -->
+                <div class="dynamic-count" id="dynamicCount"><i class="fa fa-comment-o"></i> 已发动态：<span id="dynamicNumber">0</span> 条</div>
+                <p class="mt-3 text-muted">加入时间：<span id="joinTime"></p>
             </div>
 
-            <!-- 安全设置 -->
-            <div class="info-card">
-                <h3 class="card-title"><i class="fa fa-shield"></i> 安全设置</h3>
-                <div class="info-item">
-                    <div class="info-label">登录密码：</div>
-                    <div class="info-value">
-                        <span class="value-text">********</span>
-                        <input type="password" class="edit-input" id="passwordInput" placeholder="请输入新密码" style="display: none;">
-                        <button class="btn-green btn-sm" id="changePasswordBtn" style="margin-left: 10px;"><i class="fa fa-lock"></i> 修改密码</button>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">邮箱验证：</div>
-                    <div class="info-value"><i class="fa fa-check text-success"></i> 已验证</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">手机验证：</div>
-                    <div class="info-value"><i class="fa fa-check text-success"></i> 已验证</div>
-                </div>
-                <div class="text-right mt-3">
-                    <button class="btn btn-danger btn-sm" id="logoutAccountBtn"><i class="fa fa-sign-out"></i> 注销账户</button>
-                    
-                </div>
+            <!-- 导航菜单 -->
+            <div class="nav-menu">
+                <ul>
+                    <li class="nav-item active" data-target="calendar-section">
+                        <i class="fa fa-calendar-check-o"></i>
+                        <span>环保打卡日历</span>
+                    </li>
+                    <li class="nav-item" data-target="account-section">
+                        <i class="fa fa-user-circle-o"></i>
+                        <span>账户基本信息</span>
+                    </li>
+                    <li class="nav-item" data-target="security-section">
+                        <i class="fa fa-shield"></i>
+                        <span>个人账号管理</span>
+                    </li>
+                    <li class="nav-item" data-target="challenge-section">
+                        <i class="fa fa-trophy"></i>
+                        <span>环保知识挑战赛</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- 右侧：环保记录和偏好 -->
-        <div class="col-md-6">
-            <!-- 我的环保行为记录 -->
-            <div class="info-card">
-                <h3 class="card-title"><i class="fa fa-calendar-check-o"></i> 我的环保行为</h3>
-                <div class="eco-record-item">
-                    <div class="record-title">低碳出行 - 骑行共享单车</div>
-                    <p class="mb-0">单次减少碳排放：0.8kg CO₂</p>
-                    <div class="record-time">2026-01-07 08:30</div>
-                </div>
-                <div class="eco-record-item">
-                    <div class="record-title">垃圾分类 - 正确投放可回收物</div>
-                    <p class="mb-0">单次减少碳排放：0.2kg CO₂</p>
-                    <div class="record-time">2026-01-06 19:15</div>
-                </div>
-                <div class="eco-record-item">
-                    <div class="record-title">绿色消费 - 购买环保产品</div>
-                    <p class="mb-0">单次减少碳排放：1.5kg CO₂</p>
-                    <div class="record-time">2026-01-05 14:20</div>
+        <!-- 右侧：内容区域 -->
+        <div class="col-md-8">
+            <!-- 环保打卡日历 -->
+            <div id="calendar-section" class="content-section active">
+                <div class="info-card">
+                    <h3 class="card-title"><i class="fa fa-calendar-check-o"></i> 环保打卡日历</h3>
+                    <div class="calendar-container" style="max-width: 600px; margin: 0 auto;">
+                        <div class="calendar-header">
+                            <button class="calendar-btn" id="prevMonth"><i class="fa fa-chevron-left"></i></button>
+                            <h4 class="calendar-title" id="currentMonth"></h4>
+                            <button class="calendar-btn" id="nextMonth"><i class="fa fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <div class="weekday">日</div>
+                            <div class="weekday">一</div>
+                            <div class="weekday">二</div>
+                            <div class="weekday">三</div>
+                            <div class="weekday">四</div>
+                            <div class="weekday">五</div>
+                            <div class="weekday">六</div>
+                        </div>
+                        <div class="calendar-days" id="calendarDays">
+                            <!-- 日期会通过JavaScript动态生成 -->
+                        </div>
+                        <div class="calendar-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">本月打卡</span>
+                                <span class="stat-value" id="monthlyCheckins">0</span>
+                                <span class="stat-unit">次</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">连续打卡</span>
+                                <span class="stat-value" id="consecutiveCheckins">0</span>
+                                <span class="stat-unit">天</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">总积分</span>
+                                <span class="stat-value" id="totalPoints">0</span>
+                                <span class="stat-unit">分</span>
+                            </div>
+                        </div>
+                        <!-- <div class="calendar-actions">
+                            <button class="btn-green" id="checkinBtn">打卡</button>
+                        </div> -->
+                        
+                        <!-- 在日历标题下方添加“回到当前月”按钮 -->
+                        <!-- <div class="calendar-controls">
+                            <button id="goToCurrentMonth" class="btn btn-primary">回到当前月</button>
+                        </div> -->
+
+                        <!-- 修改后的HTML结构 -->
+                        <div class="calendar-actions">
+                            <button class="btn-green" id="checkinBtn">打卡</button>
+                            <button id="goToCurrentMonth" class="btn btn-primary">回到当前月</button>
+                        </div>
+
+                    </div>
+                    <!-- 历史打卡记录 -->
+                    <div class="history-section">
+                        <div class="history-header">
+                            <h4 class="history-title">历史打卡记录</h4>
+                            <button class="btn btn-sm btn-outline-danger" id="clearHistoryBtn">清空记录</button>
+                        </div>
+                        <div class="history-list" id="historyList">
+                            <!-- 历史记录将通过JS动态生成 -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 环保偏好设置 -->
-            <div class="info-card">
-                <h3 class="card-title"><i class="fa fa-heart"></i> 环保偏好</h3>
-                <div class="info-item">
-                    <div class="info-label">关注领域：</div>
-                    <div class="info-value">
-                        <span class="badge bg-success text-white">低碳出行</span>
-                        <span class="badge bg-success text-white">垃圾分类</span>
-                        <span class="badge bg-success text-white">绿色消费</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">消息推送：</div>
-                    <div class="info-value">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" checked id="notify1">
-                            <label class="form-check-label" for="notify1">环保资讯推送</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" checked id="notify2">
-                            <label class="form-check-label" for="notify2">低碳行为提醒</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="notify3">
-                            <label class="form-check-label" for="notify3">环保活动通知</label>
+            <!-- 账户基本信息 -->
+            <div id="account-section" class="content-section">
+                <div class="info-card">
+                    <h3 class="card-title"><i class="fa fa-user-circle-o"></i> 账户基本信息</h3>
+                    <div class="info-item">
+                        <div class="info-label">用户名：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="usernameText">绿色践行者</span>
                         </div>
                     </div>
-                </div>
-                <div class="text-right mt-3">
-                    <button class="btn-green btn-sm">保存偏好设置</button>
+                    <div class="info-item">
+                        <div class="info-label">昵称：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="nicknameText">绿色守护者</span>
+                            <input type="text" class="edit-input" id="nickname" value="绿色守护者">
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">电子邮箱：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="emailText">green_life@example.com</span>
+                            <input type="email" class="edit-input" id="emailInput" value="green_life@example.com">
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">手机号码：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="phoneText">138****8888</span>
+                            <input type="tel" class="edit-input" id="phoneInput" value="13800008888">
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">所在城市：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="cityText">未设置地区</span>
+                            <input type="text" class="edit-input" id="cityInput" value="北京市 朝阳区">
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">生日：</div>
+                        <div class="info-value">
+                            <span class="value-text" id="birthdayText">未设置生日</span>
+                            <input type="date" class="edit-input" id="birthdayInput" value="">
+                        </div>
+                    </div>   
+            <a href="javascript:void(0)" class="btn-green mt-2" id="editProfileBtn">编辑个人资料</a>
+            <button class="btn-green save-btn" id="saveProfileBtn">确认保存修改</button>
                 </div>
             </div>
+
+            <!-- 个人账号管理 -->
+            <div id="security-section" class="content-section">
+                <div class="info-card">
+                    <h3 class="card-title"><i class="fa fa-shield"></i> 安全设置</h3>
+                    <div class="info-item">
+                        <div class="info-label">登录密码：</div>
+                        <div class="info-value" style="display: flex; align-items: center;">
+                            <div style="flex: 1;">********</div>
+                            <input type="password" class="edit-input" id="passwordInput" placeholder="请输入新密码" style="display: none; margin-left: 10px;">
+                            <button class="btn-green btn-sm" id="changePasswordBtn" style="margin-left: 16px; white-space: nowrap;"><i class="fa fa-lock"></i> 修改密码</button>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">邮箱验证：</div>
+                        <div class="info-value"><i class="fa fa-check text-success"></i> 已验证</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">手机验证：</div>
+                        <div class="info-value"><i class="fa fa-check text-success"></i> 已验证</div>
+                    </div>
+                    <div class="text-right mt-3">
+                        <button class="btn btn-danger btn-sm" id="logoutAccountBtn" style="font-size: 14px; padding: 6px 18px;"><i class="fa fa-sign-out"></i> 注销账户</button>
+                        
+                    </div>
+                </div>
+
+               
+                </div>
+            </div>
+
+            <!-- 环保知识挑战赛 -->
+            <div id="challenge-section" class="content-section">
+
+                <!-- 挑战赛核心内容区 --> 
+                <section class="challenge-container"> 
+                    <div class="container"> 
+                        <div class="row"> 
+                            <!-- 左侧：仅保留答题模块 --> 
+                            <div class="col-md-8"> 
+                                <div class="challenge-card">                        
+                                    <!-- 答题模块 --> 
+                                    <div class="quiz-container"> 
+                                        <h3><i class="fa fa-question-circle"></i> 环保知识答题挑战</h3> 
+                                        <p>参与环保知识答题，答对一题获得10积分，每日可答题1次，快来挑战吧！</p> 
+                                        
+                                        <!-- 答题进度条 --> 
+                                        <div class="quiz-progress"> 
+                                            <div class="progress-bar" id="quiz-progress-bar"></div> 
+                                        </div> 
+                                        
+                                        <!-- 答题卡片 --> 
+                                        <div class="quiz-card" id="quiz-card"> 
+                                            <div class="quiz-question" id="quiz-question">请点击"开始答题"按钮开始挑战</div> 
+                                            <ul class="quiz-options" id="quiz-options"></ul> 
+                                            
+                                            <!-- 答题控制按钮 --> 
+                                            <div class="quiz-controls"> 
+                                                <button class="challenge-btn" id="start-quiz"><i class="fa fa-play"></i> 开始答题</button> 
+                                                <button class="challenge-btn" id="next-question" style="display: none;"><i class="fa fa-arrow-right"></i> 下一题</button> 
+                                                <button class="challenge-btn" id="submit-quiz" style="display: none;"><i class="fa fa-check"></i> 提交答题</button> 
+                                            </div> 
+                                        </div> 
+                                        
+                                        <!-- 答题结果面板 --> 
+                                        <div class="quiz-result" id="quiz-result"> 
+                                            <h4><i class="fa fa-certificate"></i> 答题结果</h4> 
+                                            <div class="result-score" id="result-score">总得分：0分（0/0题正确）</div> 
+                                            <p id="result-desc">恭喜你完成答题，获得0绿色积分！</p> 
+                                            <button class="challenge-btn" id="restart-quiz"><i class="fa fa-refresh"></i> 重新答题</button> 
+                                            <button class="challenge-btn" id="view-ranking"><i class="fa fa-ranking"></i> 查看答题排名</button> 
+                                        </div> 
+                                    </div> 
+                                </div> 
+                            </div> 
+
+
+                            <!-- 右侧：仅保留答题排名 --> 
+                            <div class="col-md-4"> 
+                                <!-- 答题排名卡片 --> 
+                                <div class="challenge-card" id="ranking-card" class="ranking-card"> 
+                                    <!-- <h3><i class="fa fa-trophy"></i> 答题排行榜</h3> 
+                                    <p style="margin-bottom: 15px;">实时更新，每日清零重新排名</p> 
+                                    <ul class="ranking-list" id="ranking-list"></ul> 
+                                    <button class="challenge-btn" style="width: 100%; margin-top: 15px;" id="hide-ranking"><i class="fa fa-times"></i> 关闭排行榜</button>  -->
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </section>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -275,44 +380,115 @@
     </div>
 </div>
 
+<!-- 打卡模态框 -->
+<div class="modal fade" id="checkinModal" tabindex="-1" role="dialog" aria-labelledby="checkinModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="checkinModalLabel">环保打卡</h4>
+            </div>
+            <div class="modal-body">
+                <div class="checkin-feedback" id="checkinFeedback" style="display: none;"></div>
+                <div class="preset-behaviors">
+                    <h4>预设选项</h4>
+                    <div class="behavior-options">
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior1" value="垃圾分类">
+                            <label for="behavior1">垃圾分类</label>
+                        </div>
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior2" value="低碳出行">
+                            <label for="behavior2">低碳出行</label>
+                        </div>
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior3" value="节约用水">
+                            <label for="behavior3">节约用水</label>
+                        </div>
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior4" value="节约用电">
+                            <label for="behavior4">节约用电</label>
+                        </div>
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior5" value="使用环保袋">
+                            <label for="behavior5">使用环保袋</label>
+                        </div>
+                        <div class="behavior-option">
+                            <input type="radio" name="behavior" id="behavior6" value="其他">
+                            <label for="behavior6">其他</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-behavior" style="margin-top: 20px;">
+                    <input type="text" id="customBehavior" placeholder="请输入其他环保行为" class="form-control" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-green" id="confirmCheckinBtn">确认打卡</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer class="background-two">
-	<div class="container">
-		<div class="row">
-			<div class="clean-footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="clean-footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
 
-				<div class="clean-footer-logo wow bounceIn" data-wow-offset="0">
-					<a href="index.html">
-						<img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
-					</a>
-				</div>
-                <div class="">队名：3Q队</div>
-                <div class="">电子邮箱：xxxxxxxxxx@qq.com</div>
-                <div class="">联系电话：xxxx-xxxxxx</div>
-				<p class="clean-copyright-info">Copyright &copy; 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
+                <!-- 左侧：Logo + 信息 -->
+                <div style="flex: 0 0 auto; text-align: left;">
+                    <div class="clean-footer-logo wow bounceIn" data-wow-offset="0" style="margin:0 0 10px 0;">
+                        <a href="index.html">
+                            <img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
+                        </a>
+                    </div>
+                </div>
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <div>队名：3Q队</div>
+                    <div>电子邮箱：3339363562@qq.com</div>
+                    <div>联系电话：xxxx-xxxxxx</div>
+                    <p class="clean-copyright-info" style="margin: 10px 0 0 0;">Copyright © 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
+                </div>
+                <!-- 右侧：社交图标 2×2 排列 -->
+                <div style="flex: 0 0 auto;">
+                    <ul class="clean-footer-social-info" style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; text-align: center;">
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-weixin" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://weibo.com/" target="_blank"><i class="fa fa-weibo" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-qq" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-envelope" style="font-size:24px;"></i></a>
+                        </li>
+                    </ul>
+                </div>
 
-				<ul class="clean-footer-social-info">
-					<li>
-						<a href=""><i class="fa fa-weixin"></i></a>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-weibo"></i></a>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-qq"></i></a>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-envelope"></i></a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
+    <div id="qrcodeModal">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeFooterQrcode()">×</span>
+            <img src="images/footer.jpg" alt="联系二维码">
+        </div>
+    </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- 👉 在这里添加 Supabase SDK（核心！） -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<!-- 你的业务脚本（必须放在最后） -->
 <script src="js/infor.js"></script>
 <script src="js/dingbu.white.js"></script>
+<script src="js/towwm.js"></script>
 </body>
 </html>

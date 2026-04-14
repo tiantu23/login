@@ -64,10 +64,15 @@ app.use('/uploads', express.static(uploadDir));
 // 引入路由
 const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
+const checkinRouter = require('./routes/checkin');
 
 // 挂载路由
 app.use('/api/user', userRouter);       // 前缀/api/user
 app.use('/api/post', postRouter);       // 前缀/api/post
+app.use('/api/checkin', checkinRouter); // 前缀/api/checkin
+
+// 为头像上传接口添加multer中间件
+app.post('/api/user/:userId/upload-avatar', upload.single('avatar'), userRouter);
 
 // 直接启动服务，不在启动时强制要求Supabase连接成功
 // 连接问题将在实际请求处理中捕获和处理

@@ -163,12 +163,13 @@ $(document).ready(function() {
 
     /**
      * 计算所有出行方式的总碳排放量
-     * @returns {object} 包含总排放量、明细、出行方式列表的对象
+     * @returns {object} 包含总排放量、明细、出行方式列表和图表数据的对象
      */
     function calculateTotalCarbon() {
         let totalCarbon = 0;
         const details = [];
         const transportTypes = [];
+        const chartData = [];
 
         // 遍历所有出行项计算
         $(".transport-item").each(function(index) {
@@ -190,6 +191,12 @@ $(document).ready(function() {
             // 累加计算
             totalCarbon += carbonEmission;
             transportTypes.push(transportName);
+            
+            // 收集图表数据
+            chartData.push({
+                name: transportName,
+                value: carbonEmission
+            });
 
             // 构建明细项
             details.push(`
@@ -202,7 +209,8 @@ $(document).ready(function() {
         return {
             totalCarbon: totalCarbon,
             details: details,
-            transportTypes: transportTypes
+            transportTypes: transportTypes,
+            chartData: chartData
         };
     }
 
@@ -219,8 +227,12 @@ $(document).ready(function() {
         const suggestion = generateCarbonSuggestion(result.totalCarbon, result.transportTypes);
         $("#footprintSuggestion").text(suggestion);
         
-        // 显示结果卡片
+        // 显示结果卡片和图表区域
         $("#footprintResultCard").fadeIn();
+        $(".chart-container").fadeIn();
+        
+        // 渲染图表
+        renderCharts(result.chartData);
     }
 
     /**
@@ -237,6 +249,137 @@ $(document).ready(function() {
         } else {
             return "您的出行碳排放量较高，建议优化出行方式：长距离优先选地铁/公交，中短途选电动车/拼车，短途步行/骑行，减少单人驾车出行。";
         }
+    }
+
+    /**
+     * 渲染图表（柱状图和饼图）
+     * @param {array} chartData - 图表数据
+     */
+    function renderCharts(chartData) {
+        renderBarChart(chartData);
+        renderPieChart(chartData);
+    }
+
+    /**
+     * 渲染柱状图
+     * @param {array} chartData - 图表数据
+     */
+    function renderBarChart(chartData) {
+        const barChartDom = document.getElementById('barChart');
+        const barChart = echarts.init(barChartDom);
+        
+        // 准备数据
+        const names = chartData.map(item => item.name);
+        const values = chartData.map(item => item.value);
+        
+        const option = {
+            title: {
+                text: '',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: '{b}: {c} 克 CO₂'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: names,
+                axisLabel: {
+                    interval: 0,
+                    rotate: 30
+                }
+            },
+            yAxis: {
+                type: 'value',
+                name: '碳排放量 (g CO₂)'
+            },
+            series: [
+                {
+                    name: '碳排放量',
+                    type: 'bar',
+                    data: values,
+                    itemStyle: {
+                        color: '#2E8B57'
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}g'
+                    }
+                }
+            ]
+        };
+        
+        barChart.setOption(option);
+        
+        // 响应式调整
+        window.addEventListener('resize', function() {
+            barChart.resize();
+        });
+    }
+
+    /**
+     * 渲染饼图
+     * @param {array} chartData - 图表数据
+     */
+    function renderPieChart(chartData) {
+        const pieChartDom = document.getElementById('pieChart');
+        const pieChart = echarts.init(pieChartDom);
+        
+        const option = {
+            title: {
+                text: '',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {c} 克 CO₂ ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                top: 'center'
+            },
+            series: [
+                {
+                    name: '碳排放占比',
+                    type: 'pie',
+                    radius: '60%',
+                    center: ['60%', '50%'],
+                    data: chartData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    itemStyle: {
+                        color: function(params) {
+                            // 自定义颜色方案，适配绿色主题
+                            const colors = ['#2E8B57', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B'];
+                            return colors[params.dataIndex % colors.length];
+                        }
+                    }
+                }
+            ]
+        };
+        
+        pieChart.setOption(option);
+        
+        // 响应式调整
+        window.addEventListener('resize', function() {
+            pieChart.resize();
+        });
     }
 
     /**

@@ -13,128 +13,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/responsive.css" />
 <link rel="stylesheet" href="css/color-green.css" id="colors" />
-<style>
-/* 统一所有板块的基础样式 */
-.recycle-tab-panel {
-    padding: 0;
-    display: none;
-}
-.recycle-tab-panel.active {
-    display: block;
-}
-.clean-section-header {
-    margin-bottom: 30px;
-    text-align: center;
-    padding: 20px 0;
-}
-
-/* 闲置共享板块 - 展示区略宽于发布区，整体与AI板块一致 */
-.idle-share-panel {
-    padding: 0 !important;
-}
-.idle-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 0 15px 20px;
-    max-width: 1050px; /* 整体宽度，可按需调整 */
-    margin: 0 auto;   /* 居中对齐AI板块 */
-}
-/* 展示区略宽（55%） */
-.idle-item-list {
-    flex: 1.5;       /* 比发布区宽一点 */
-    max-width: 580px;
-    min-width: 260px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-}
-/* 发布区稍窄（45%） */
-.idle-publish-form {
-    flex: 1;         /* 基础宽度 */
-    max-width: 340px;
-    min-width: 240px;
-}
-.idle-item-card {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px; /* 减小间距更紧凑 */
-    background-color: white;
-}
-.idle-item-card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-.idle-item-title {
-    font-size: 17px;
-    font-weight: bold;
-    color: #4CAF50;
-    margin-bottom: 5px;
-}
-.idle-item-desc {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 10px;
-    height: 50px; /* 缩短描述高度适配窄宽度 */
-    overflow: hidden;
-}
-.idle-item-meta {
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 10px;
-}
-.contact-author-btn {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding: 7px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 14px;
-}
-.contact-author-btn:hover {
-    background-color: #0b7dda;
-}
-.form-group {
-    margin-bottom: 18px;
-}
-.radio-group {
-    margin-left: 15px;
-}
-.radio-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-.btn-submit {
-    background-color: #4CAF50;
-    color: white;
-    width: 100%;
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 4px;
-    border: none;
-}
-.btn-submit:hover {
-    background-color: #45a049;
-}
-.image-preview {
-    margin-top: 8px;
-}
-.image-preview img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    margin: 4px;
-}
-</style>
 </head>
-
 <body>
 <header>
 	<nav class="navbar clean-main-menu" role="navigation">
@@ -243,35 +122,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- 垃圾危害科普 -->
-                <div class="harm-section">
-                    <h3><i class="fa fa-warning" style="color: #dc3545;"></i> 垃圾的危害科普</h3>
-                    <div class="harm-list">
-                        <div class="harm-item">
-                            <h4>对人类健康</h4>
-                            <p>有害垃圾中的重金属、化学物质会通过空气、水源进入人体，引发中毒、癌症、神经系统损伤等疾病；厨余垃圾腐败产生的细菌和异味会导致呼吸道疾病和肠胃疾病。</p>
-                        </div>
-                        <div class="harm-item">
-                            <h4>对生态环境</h4>
-                            <p>塑料垃圾难以降解，会破坏土壤结构；有害垃圾渗漏会污染土壤和地下水；垃圾焚烧产生的二噁英等有毒气体造成大气污染，加剧温室效应。</p>
-                        </div>
-                        <div class="harm-item">
-                            <h4>对地球生态</h4>
-                            <p>全球每年产生超20亿吨垃圾，大量垃圾填埋占用土地资源，破坏地表植被；海洋垃圾形成“垃圾岛”，破坏海洋生态平衡，影响地球碳循环。</p>
-                        </div>
-                        <div class="harm-item">
-                            <h4>对水资源</h4>
-                            <p>垃圾渗滤液含有重金属和有毒有机物，渗入地下水或流入河流湖泊，导致水质恶化，破坏水生生态系统，威胁饮用水安全。</p>
-                        </div>
-                        <div class="harm-item">
-                            <h4>对动物生存</h4>
-                            <p>海洋动物误食塑料垃圾导致死亡；陆地动物被废弃渔网、塑料袋缠绕受伤；有害垃圾污染的水源和食物导致动物中毒、基因突变甚至灭绝。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 豆包AI图片识别垃圾分类 -->
+<!-- 豆包AI图片识别垃圾分类 -->
                 <div class="ai-recognition">
                     <h3><i class="fa fa-camera" style="color: #28a745;"></i> 豆包AI图片识别垃圾分类</h3>
                     <p>上传垃圾图片，AI智能识别垃圾类型并给出专业回收方案</p>
@@ -300,8 +151,47 @@
                         </div>
                     </div>
                 </div>
+                <!-- 垃圾危害科普 -->
+                <div class="harm-section">
+                    <h3><i class="fa fa-warning" style="color: #dc3545;"></i> 垃圾的危害科普</h3>
+                    <div class="harm-list">
+                        <div class="harm-item">
+                            <h4>对人类健康</h4>
+                            <p>有害垃圾中的重金属、化学物质会通过空气、水源进入人体，引发中毒、癌症、神经系统损伤等疾病；厨余垃圾腐败产生的细菌和异味会导致呼吸道疾病和肠胃疾病。垃圾堆积易滋生蚊蝇、老鼠等病媒生物，传播登革热、鼠疫、痢疾等传染病；废旧电子垃圾拆解产生的有毒物质，还会通过食物链富集，长期危害人体造血、生殖系统。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对生态环境</h4>
+                            <p>塑料垃圾难以降解，会破坏土壤结构；有害垃圾渗漏会污染土壤和地下水；垃圾焚烧产生的二噁英等有毒气体造成大气污染，加剧温室效应。一次性塑料、微塑料会在环境中持续存在数百年，破坏土壤微生物群落，降低土地肥力；垃圾填埋产生的甲烷（温室效应是CO₂的28倍），会加速全球变暖与极端天气频发。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对地球生态</h4>
+                            <p>全球每年产生超20亿吨垃圾，大量垃圾填埋占用土地资源，破坏地表植被；海洋垃圾形成“垃圾岛”，破坏海洋生态平衡，影响地球碳循环。垃圾侵占土地会挤压动植物生存空间，加剧生物多样性丧失；非法倾倒垃圾还会破坏自然景观，影响生态系统的自我修复能力。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对水资源</h4>
+                            <p>垃圾渗滤液含有重金属和有毒有机物，渗入地下水或流入河流湖泊，导致水质恶化，破坏水生生态系统，威胁饮用水安全。受污染的水源会导致水体富营养化，引发蓝藻爆发、鱼虾大量死亡，进一步破坏水生态链；工业垃圾、医疗垃圾的违规排放，还会造成区域性饮水危机。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对动物生存</h4>
+                            <p>海洋动物误食塑料垃圾导致死亡；陆地动物被废弃渔网、塑料袋缠绕受伤；有害垃圾污染的水源和食物导致动物中毒、基因突变甚至灭绝。塑料垃圾会在动物体内累积，通过食物链传递给人类，形成 “塑料循环”；海洋垃圾还会破坏珊瑚礁、海草床等关键栖息地，加速濒危物种灭绝。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对社会经济</h4>
+                            <p>垃圾乱堆乱放会严重影响城市市容与居住品质，降低区域宜居性；混合垃圾会大幅降低可回收物利用率，造成资源浪费，同时增加垃圾清运、填埋、焚烧的财政成本；垃圾堆积还易引发火灾、沼气爆炸等安全事故，威胁公共安全。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对农业生产</h4>
+                            <p>垃圾中的重金属、塑料残片会污染农田土壤，导致农作物减产、品质下降，甚至使农产品重金属超标，危害食品安全；塑料地膜残留会破坏土壤透气性，影响作物根系生长，长期造成耕地退化。</p>
+                        </div>
+                        <div class="harm-item">
+                            <h4>对人居生活</h4>
+                            <p>垃圾异味、蚊虫滋生会严重影响居民日常生活，降低生活幸福感；垃圾清运不及时、分类不到位，会引发邻里矛盾，破坏社区环境；垃圾焚烧厂、填埋场周边的环境问题，还会引发邻避效应，影响区域发展。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- 2. 回收利用板块（最终完善版） -->
 <div id="recycle-utilize-panel" class="recycle-tab-panel">
     <div class="clean-section-header">
         <h1><span class="clean-color-contras">资源回收利用指南</span></h1>
@@ -309,7 +199,7 @@
         <p>详细了解各类可回收材料的特性、分类和专业回收方法，最大化资源再利用价值</p>
     </div>
 
-    <!-- 新增：搜索框区域 -->
+    <!-- 搜索框 -->
     <div class="search-container" style="margin: 0 15px 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
         <div class="input-group" style="max-width: 600px; margin: 0 auto;">
             <input type="text" id="material-search" class="form-control" placeholder="搜索可回收材料（如：纸张、塑料、玻璃）" style="height: 40px; font-size: 16px;">
@@ -319,156 +209,103 @@
                 </button>
             </span>
         </div>
-        <p id="search-result-tip" style="text-align: center; margin-top: 10px; color: #6c757d; display: none;"></p>
+        <p id="search-result-tip" style="text-align:center; margin-top:10px; color:#6c757d; display:none;"></p>
     </div>
 
-    <!-- 分页控制 -->
-    <div class="pagination-controls" style="margin: 0 15px 20px; text-align: center;">
+    <!-- 分页 -->
+    <div class="pagination-controls" style="margin:0 15px 20px; text-align:center;">
         <button class="page-btn" id="prev-page" disabled>上一页</button>
-        <span>当前页：<span id="current-page">1</span> / <span id="total-pages">8</span></span>
-        <div style="display: inline-block; margin: 0 10px;">
-            <input type="number" class="page-input" id="page-input" min="1" max="8" value="1" style="width: 60px; padding: 5px; text-align: center;">
+        <span>当前页：<span id="current-page">1</span> / <span id="total-pages">1</span></span>
+        <div style="display:inline-block; margin:0 10px;">
+            <input type="number" class="page-input" id="page-input" min="1" max="1" value="1" style="width:60px; padding:5px; text-align:center;">
             <button class="page-btn" id="go-page">跳转</button>
         </div>
         <button class="page-btn" id="next-page">下一页</button>
     </div>
 
-    <!-- 回收材料列表 -->
-    <div class="recycle-materials" id="materials-list" style="padding: 0 15px;">
-        <!-- 内容由JS动态生成 -->
+    <!-- 材料列表 -->
+    <div class="recycle-materials" id="materials-list" style="padding:0 15px;"></div>
+</div>
+            
+           <!-- 3. 闲置共享板块（登录后发布） -->
+<div id="idle-share-panel" class="recycle-tab-panel idle-share-panel">
+    <div class="clean-section-header">
+        <h1><span class="clean-color-contras">闲置共享 - 资源循环利用</span></h1>
+        <div class="clean-line"></div>
+        <p>让闲置物品找到新主人，减少资源浪费，共建绿色环保社区</p>
+    </div>
+
+    <div class="container" style="max-width: 850px;">
+        <div class="row">
+            <div class="col-md-6 dynamic-container">
+                <div class="dynamic-tabs">
+                    <div class="tab-item active" data-tab="public-idle">
+                        <i class="fa fa-users"></i> 全部闲置
+                    </div>
+                    <div class="tab-item" data-tab="my-idle">
+                        <i class="fa fa-user"></i> 我的闲置
+                    </div>
+                </div>
+
+                <!-- 闲置列表 -->
+                <div class="dynamic-list" id="idleList">
+                    <div class="text-center" id="emptyTip">
+                        <i class="fa fa-leaf" style="font-size: 48px; color: #4CAF50; margin-bottom: 15px;"></i>
+                        <p>暂无闲置物品，快来发布第一条吧！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="post-card" id="postIdleCard">
+                    <h4><i class="fa fa-pencil-square-o"></i> 发布闲置物品</h4>
+                    <hr>
+                    <form id="publishIdleForm" class="post-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="itemName" placeholder="物品名称" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="itemCategory" required>
+                                <option value="">请选择分类</option>
+                                <option value="electronics">电子产品</option>
+                                <option value="clothing">服饰箱包</option>
+                                <option value="books">书籍文具</option>
+                                <option value="furniture">家居用品</option>
+                                <option value="others">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="itemDesc" placeholder="物品描述、新旧程度..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemImages"><i class="fa fa-image"></i> 上传图片</label>
+                            <input type="file" id="itemImages" accept="image/*" multiple>
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>交易方式：</label>
+                            <label class="privacy-label">
+                                <input type="radio" name="exchangeType" value="free" checked> 免费赠送
+                            </label>
+                            <label class="privacy-label">
+                                <input type="radio" name="exchangeType" value="lowPrice"> 低价自提
+                            </label>
+                            <label class="privacy-label">
+                                <input type="radio" name="exchangeType" value="exchange"> 互相交换
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="location" placeholder="所在城市/校区" required>
+                        </div>
+                        <button type="submit" class="btn btn-green btn-block">
+                            <i class="fa fa-paper-plane"></i> 发布闲置
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-            <!-- 2. 回收利用板块 -->
-            <div id="recycle-utilize-panel" class="recycle-tab-panel">
-                <div class="clean-section-header">
-                    <h1><span class="clean-color-contras">资源回收利用指南</span></h1>
-                    <div class="clean-line"></div>
-                    <p>详细了解各类可回收材料的特性、分类和专业回收方法，最大化资源再利用价值</p>
-                </div>
-
-                <!-- 分页控制 -->
-                <div class="pagination-controls">
-                    <button class="page-btn" id="prev-page" disabled>上一页</button>
-                    <span>当前页：<span id="current-page">1</span> / <span id="total-pages">8</span></span>
-                    <div>
-                        <input type="number" class="page-input" id="page-input" min="1" max="8" value="1">
-                        <button class="page-btn" id="go-page">跳转</button>
-                    </div>
-                    <button class="page-btn" id="next-page">下一页</button>
-                </div>
-
-                <!-- 回收材料列表 -->
-                <div class="recycle-materials" id="materials-list">
-                    <!-- 内容由JS动态生成 -->
-                </div>
-            </div>
-            
-            <!-- 3. 闲置共享板块（新增） -->
-            <div id="idle-share-panel" class="recycle-tab-panel idle-share-panel">
-                <!-- 统一的标题区域 - 与其他板块位置完全一致 -->
-                <div class="clean-section-header">
-                    <h1><span class="clean-color-contras">闲置共享 - 资源循环利用</span></h1>
-                    <div class="clean-line"></div>
-                    <p>让闲置物品找到新主人，减少资源浪费，共建绿色环保社区</p>
-                </div>
-
-                <!-- 1:1 比例的内容区域 -->
-                <div class="container idle-container">
-                    <!-- 左侧：闲置物品展览区 (1/2) -->
-                    <div class="idle-item-list">
-                        <h3 style="text-align: center; margin-bottom: 20px; color: #4CAF50;"><i class="fa fa-recycle"></i> 闲置物品展览</h3>
-                        
-                        <!-- 闲置物品1 -->
-                        <div class="idle-item-card">
-                            <img src="https://picsum.photos/seed/item1/400/300" alt="九成新笔记本电脑">
-                            <div class="idle-item-title">九成新笔记本电脑</div>
-                            <div class="idle-item-meta">
-                                <span><i class="fa fa-tag"></i> 电子产品</span> | 
-                                <span><i class="fa fa-map-marker"></i> 北京市海淀区</span> | 
-                                <span><i class="fa fa-exchange"></i> 低价自提</span>
-                            </div>
-                            <div class="idle-item-desc">
-                                联想小新Pro14，使用1年，电池健康度95%，无拆无修，配件齐全。因换新机闲置，希望低价转让给有需要的人。
-                            </div>
-                            <button class="contact-author-btn" onclick="contactAuthor('笔记本电脑', '13800138000', 'xiaoming@qq.com')">
-                                <i class="fa fa-phone"></i> 联系发布者
-                            </button>
-                        </div>
-
-                        <!-- 闲置物品2 -->
-                        <div class="idle-item-card">
-                            <img src="https://picsum.photos/seed/item2/400/300" alt="宜家单人沙发">
-                            <div class="idle-item-title">宜家单人沙发</div>
-                            <div class="idle-item-meta">
-                                <span><i class="fa fa-tag"></i> 家居用品</span> | 
-                                <span><i class="fa fa-map-marker"></i> 上海市浦东新区</span> | 
-                                <span><i class="fa fa-gift"></i> 免费赠送</span>
-                            </div>
-                            <div class="idle-item-desc">
-                                宜家汉林比单人沙发，使用2年，无破损，面料可拆洗。搬家带不走，免费赠送，需自提。
-                            </div>
-                            <button class="contact-author-btn" onclick="contactAuthor('宜家沙发', '13900139000', 'lisi@qq.com')">
-                                <i class="fa fa-phone"></i> 联系发布者
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 右侧：发布闲置表单 (1/2) -->
-                    <div class="idle-publish-form panel panel-default">
-                        <div class="panel-body">
-                            <h3><i class="fa fa-plus-circle"></i> 发布闲置物品</h3>
-                            <form id="publishIdleForm">
-                                <div class="form-group">
-                                    <label for="itemName">1. 物品名称 <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="itemName" placeholder="请输入物品名称" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="itemCategory">2. 物品分类 <span class="text-danger">*</span></label>
-                                    <select class="form-control" id="itemCategory" required>
-                                        <option value="">请选择物品分类</option>
-                                        <option value="electronics">电子产品</option>
-                                        <option value="clothing">服饰箱包</option>
-                                        <option value="books">书籍文具</option>
-                                        <option value="furniture">家居用品</option>
-                                        <option value="others">其他</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="itemDesc">3. 物品描述 <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="itemDesc" rows="4" placeholder="请描述物品新旧程度、使用情况等" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="itemImages">4. 物品照片</label>
-                                    <input type="file" id="itemImages" accept="image/*" multiple>
-                                    <div class="image-preview" id="imagePreview"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label>5. 期望交换方式：</label>
-                                    <div class="radio-group">
-                                        <label>
-                                            <input type="radio" name="exchangeType" value="exchange" required> 交换（我用A换你的B）
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="exchangeType" value="free"> 免费赠送
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="exchangeType" value="lowPrice"> 低价自提
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="location">6. 所在城市/校区 <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="location" placeholder="请输入所在城市或校区" required>
-                                </div>
-                                <button type="submit" class="btn btn-submit">
-                                    <i class="fa fa-paper-plane"></i> 发布闲置
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- 4. 环保AI助手板块 -->
             <div id="ai-assistant-panel" class="recycle-tab-panel ai-assistant-panel">
@@ -480,7 +317,7 @@
 
                 <div class="row">
                     <!-- 左侧：AI功能介绍 -->
-                    <div class="col-md-4 col-sm-4 col-xs-12" style="background: #f8f9fa; padding: 20px; border-radius: 8px; height: 450px;">
+                    <div class="col-md-3 col-sm-4 col-xs-12" style="background: #f8f9fa; padding: 20px; border-radius: 8px; height: 450px;">
                         <div class="clean-pricing-titles">
                             <h2>豆包 AI 驱动</h2>
                             <p><span style="color: #28a745;"></span> 智能环保咨询</p>
@@ -498,7 +335,7 @@
                     </div>
 
                     <!-- 中间：AI聊天界面 -->
-                    <div class="col-md-4 col-sm-4 col-xs-12" style="height: 450px; border-radius: 8px;">
+                    <div class="col-md-6 col-sm-4 col-xs-12" style="height: 450px; border-radius: 8px;">
                         <div class="clean-pricing-titles">
                             <h2>AI 对话界面</h2>
                             <p><span style="color: #28a745;">实时交互</span> 智能响应</p>
@@ -522,7 +359,7 @@
                     </div>
 
                     <!-- 右侧：快速提问入口 -->
-                    <div class="col-md-4 col-sm-4 col-xs-12" style="background: #f8f9fa; padding: 20px; border-radius: 8px; height: 450px;">
+                    <div class="col-md-3 col-sm-4 col-xs-12" style="background: #f8f9fa; padding: 20px; border-radius: 8px; height: 450px;">
                         <div class="clean-pricing-titles">
                             <h2>快速提问</h2>
                             <p><i class="fa fa-bolt" style="color: #28a745;"></i> 热门环保问题</p>
@@ -550,144 +387,62 @@
 </div>
 
 <footer class="background-two">
-	<div class="container">
-		<div class="row">
-			<div class="clean-footer-content">
-				<div class="clean-footer-logo wow bounceIn" data-wow-offset="0">
-					<a href="index.html">
-						<img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
-					</a>
-				</div>
-                <div class="">队名：3Q队</div>
-                <div class="">电子邮箱：xxxxxxxxxx@qq.com</div>
-                <div class="">联系电话：xxxx-xxxxxx</div>
-				<p class="clean-copyright-info">Copyright &copy; 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
-				<ul class="clean-footer-social-info">
-					<li><a href=""><i class="fa fa-weixin"></i></a></li>
-					<li><a href=""><i class="fa fa-weibo"></i></a></li>
-					<li><a href=""><i class="fa fa-qq"></i></a></li>
-					<li><a href=""><i class="fa fa-envelope"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="clean-footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+
+                <!-- 左侧：Logo + 信息 -->
+                <div style="flex: 0 0 auto; text-align: left;">
+                    <div class="clean-footer-logo wow bounceIn" data-wow-offset="0" style="margin:0 0 10px 0;">
+                        <a href="index.html">
+                            <img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
+                        </a>
+                    </div>
+                </div>
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <div>队名：3Q队</div>
+                    <div>电子邮箱：3339363562@qq.com</div>
+                    <div>联系电话：xxxx-xxxxxx</div>
+                    <p class="clean-copyright-info" style="margin: 10px 0 0 0;">Copyright © 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
+                </div>
+                <!-- 右侧：社交图标 2×2 排列 -->
+                <div style="flex: 0 0 auto;">
+                    <ul class="clean-footer-social-info" style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; text-align: center;">
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-weixin" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://weibo.com/" target="_blank"><i class="fa fa-weibo" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-qq" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-envelope" style="font-size:24px;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="qrcodeModal">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeFooterQrcode()">×</span>
+            <img src="images/footer.jpg" alt="联系二维码">
+        </div>
+    </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="js/recycle.js"></script>
 <script src="js/dingbu.white.js"></script>
 <script src="main.js"></script>
 <script src="js/api/ai-recognition.js"></script>
-<script>
-    // 标签切换功能
-    $(document).ready(function() {
-        // 标签切换
-        $('.recycle-tab-btn').click(function() {
-            // 移除所有标签的active状态
-            $('.recycle-tab-btn').removeClass('active');
-            // 给当前点击的标签添加active状态
-            $(this).addClass('active');
-            
-            // 获取目标面板
-            var target = $(this).data('target');
-            // 隐藏所有面板
-            $('.recycle-tab-panel').removeClass('active');
-            // 显示目标面板
-            $('#' + target + '-panel').addClass('active');
-        });
-
-        // 闲置共享相关功能
-        // 图片预览功能
-        document.getElementById('itemImages').addEventListener('change', function(e) {
-            const preview = document.getElementById('imagePreview');
-            preview.innerHTML = '';
-            const files = e.target.files;
-            if (files.length > 6) {
-                alert('最多只能上传6张图片');
-                this.value = '';
-                return;
-            }
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.width = '100px';
-                    img.style.height = '100px';
-                    img.style.objectFit = 'cover';
-                    img.style.margin = '5px';
-                    preview.appendChild(img);
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // 表单提交处理
-        document.getElementById('publishIdleForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('您的闲置物品已发布成功！将展示在左侧展览区供他人查看。');
-            this.reset();
-            document.getElementById('imagePreview').innerHTML = '';
-        });
-    });
-
-    // 联系发布者功能
-    function contactAuthor(itemName, phone, email) {
-        alert(`
-            物品名称：${itemName}
-            联系电话：${phone}
-            电子邮箱：${email}
-            
-            温馨提示：请文明沟通，诚信交易
-        `);
-    }
-
-    // AI聊天功能
-    document.getElementById('send-btn').addEventListener('click', function() {
-        const input = document.getElementById('chat-input');
-        const message = input.value.trim();
-        if (message) {
-            const chatWindow = document.getElementById('chat-window');
-            
-            // 添加用户消息
-            const userMsg = `
-                <div style="margin-bottom: 10px; text-align: right;">
-                    <div style="display: inline-block; background: #28a745; color: white; padding: 8px 12px; border-radius: 15px; max-width: 80%;">
-                        ${message}
-                    </div>
-                </div>
-            `;
-            chatWindow.innerHTML += userMsg;
-            
-            // 模拟AI回复
-            setTimeout(() => {
-                const aiReply = `
-                    <div style="margin-bottom: 10px; text-align: left;">
-                        <div style="display: inline-block; background: #f1f1f1; padding: 8px 12px; border-radius: 15px; max-width: 80%;">
-                            感谢您的提问！我已收到您的问题："${message}"，相关的环保解答正在整理中，请稍候...
-                        </div>
-                    </div>
-                `;
-                chatWindow.innerHTML += aiReply;
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-            }, 1000);
-            
-            input.value = '';
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
-    });
-
-    // 快速提问按钮点击事件
-    document.querySelectorAll('.quick-question').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const question = this.textContent.trim().replace(' ', '').replace(' ', '');
-            document.getElementById('chat-input').value = question;
-            document.getElementById('send-btn').click();
-        });
-    });
-</script>
+<script src="js/api/doubao.ai.chat.js"></script>
+<script src="js/towwm.js"></script>
 </body>
 </html>

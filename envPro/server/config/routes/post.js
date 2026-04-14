@@ -56,9 +56,9 @@ router.post('/', upload.array('images'), async (req, res) => {
         // 处理图片上传
         let imageUrl = null;
         if (req.files && req.files.length > 0) {
-            // 暂时只使用第一张图片
-            const file = req.files[0];
-            imageUrl = `/uploads/${file.filename}`;
+            // 处理多张图片，用逗号分隔存储
+            const imageUrls = req.files.map(file => `/uploads/${file.filename}`);
+            imageUrl = imageUrls.join(',');
         }
 
         const { data: newPost, error: insertError } = await supabase
@@ -92,17 +92,39 @@ router.post('/', upload.array('images'), async (req, res) => {
 // 获取公开动态列表接口
 router.get('/public', async (req, res) => {
     try {
-        const { data: posts, error } = await supabase
+        const { user_id } = req.query;
+        
+        let query = supabase
             .from('post')
-            .select('id, user_id, content, image_url, permission, created_at, updated_at')
+            .select('id, user_id, content, image_url, permission, created_at, updated_at, like_count')
             .eq('permission', 'public')
             .order('created_at', { ascending: false });
         
+        const { data: posts, error } = await query;
+        
         if (error) throw error;
+
+        // 如果提供了用户ID，查询用户的点赞状态
+        let postsWithLikeStatus = posts || [];
+        if (user_id) {
+            const { data: userLikes, error: likesError } = await supabase
+                .from('post_like')
+                .select('post_id')
+                .eq('user_id', user_id);
+            
+            if (likesError) throw likesError;
+            
+            // 处理空数据情况
+            const likedPostIds = new Set((userLikes || []).map(like => like.post_id));
+            postsWithLikeStatus = posts.map(post => ({
+                ...post,
+                is_liked: likedPostIds.has(post.id)
+            }));
+        }
 
         res.json({
             success: true,
-            posts: posts || []
+            posts: postsWithLikeStatus
         });
     } catch (err) {
         console.error('获取公开动态失败:', err);
@@ -114,18 +136,37 @@ router.get('/public', async (req, res) => {
 router.get('/user/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
+        const { user_id: currentUserId } = req.query;
         
         const { data: posts, error } = await supabase
             .from('post')
-            .select('id, user_id, content, image_url, permission, created_at, updated_at')
+            .select('id, user_id, content, image_url, permission, created_at, updated_at, like_count')
             .eq('user_id', userId)
             .order('created_at', { ascending: false });
         
         if (error) throw error;
 
+        // 如果提供了当前用户ID，查询用户的点赞状态
+        let postsWithLikeStatus = posts || [];
+        if (currentUserId) {
+            const { data: userLikes, error: likesError } = await supabase
+                .from('post_like')
+                .select('post_id')
+                .eq('user_id', currentUserId);
+            
+            if (likesError) throw likesError;
+            
+            // 处理空数据情况
+            const likedPostIds = new Set((userLikes || []).map(like => like.post_id));
+            postsWithLikeStatus = posts.map(post => ({
+                ...post,
+                is_liked: likedPostIds.has(post.id)
+            }));
+        }
+
         res.json({
             success: true,
-            posts: posts || []
+            posts: postsWithLikeStatus
         });
     } catch (err) {
         console.error('获取用户动态失败:', err);
@@ -228,6 +269,137 @@ router.delete('/:postId', async (req, res) => {
     } catch (err) {
         console.error('删除动态失败:', err);
         res.status(500).json({ success: false, message: '删除动态失败', error: err.message });
+    }
+});
+
+// 点赞动态接口
+router.post('/:postId/like', async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const { user_id } = req.body;
+        
+        if (!user_id) {
+            return res.status(400).json({ success: false, message: '用户ID是必填项' });
+        }
+
+        // 检查动态是否存在
+        const { data: post, error: postError } = await supabase
+            .from('post')
+            .select('id, user_id, like_count')
+            .eq('id', postId)
+            .limit(1);
+        
+        if (postError) throw postError;
+        if (!post || post.length === 0) {
+            return res.status(404).json({ success: false, message: '动态不存在' });
+        }
+
+        // 禁止给自己点赞
+        if (post[0].user_id === user_id) {
+            return res.status(400).json({ success: false, message: '不能给自己的动态点赞' });
+        }
+
+        // 检查是否已经点赞
+        const { data: existingLike, error: likeError } = await supabase
+            .from('post_like')
+            .select('id')
+            .eq('post_id', postId)
+            .eq('user_id', user_id)
+            .limit(1);
+        
+        if (likeError) throw likeError;
+        if (existingLike && existingLike.length > 0) {
+            return res.status(400).json({ success: false, message: '已经点赞过了' });
+        }
+
+        // 开始事务
+        const { data: newLike, error: insertError } = await supabase
+            .from('post_like')
+            .insert([{
+                post_id: postId,
+                user_id: user_id,
+                created_at: new Date()
+            }])
+            .select();
+        
+        if (insertError) throw insertError;
+
+        // 更新post表的like_count
+        const currentLikeCount = post[0].like_count || 0;
+        const { error: updateError } = await supabase
+            .from('post')
+            .update({ 
+                like_count: currentLikeCount + 1,
+                updated_at: new Date()
+            })
+            .eq('id', postId)
+            .select();
+        
+        if (updateError) throw updateError;
+
+        res.json({
+            success: true,
+            message: '点赞成功',
+            like_count: post[0].like_count ? post[0].like_count + 1 : 1
+        });
+    } catch (err) {
+        console.error('点赞失败:', err);
+        res.status(500).json({ success: false, message: '点赞失败', error: err.message });
+    }
+});
+
+// 取消点赞接口
+router.delete('/:postId/like', async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const { user_id } = req.body;
+        
+        if (!user_id) {
+            return res.status(400).json({ success: false, message: '用户ID是必填项' });
+        }
+
+        // 检查动态是否存在
+        const { data: post, error: postError } = await supabase
+            .from('post')
+            .select('id, like_count')
+            .eq('id', postId)
+            .limit(1);
+        
+        if (postError) throw postError;
+        if (!post || post.length === 0) {
+            return res.status(404).json({ success: false, message: '动态不存在' });
+        }
+
+        // 删除点赞记录
+        const { error: deleteError } = await supabase
+            .from('post_like')
+            .delete()
+            .eq('post_id', postId)
+            .eq('user_id', user_id);
+        
+        if (deleteError) throw deleteError;
+
+        // 更新post表的like_count
+        const newLikeCount = Math.max(0, (post[0].like_count || 1) - 1);
+        const { error: updateError } = await supabase
+            .from('post')
+            .update({ 
+                like_count: newLikeCount,
+                updated_at: new Date()
+            })
+            .eq('id', postId)
+            .select();
+        
+        if (updateError) throw updateError;
+
+        res.json({
+            success: true,
+            message: '取消点赞成功',
+            like_count: newLikeCount
+        });
+    } catch (err) {
+        console.error('取消点赞失败:', err);
+        res.status(500).json({ success: false, message: '取消点赞失败', error: err.message });
     }
 });
 

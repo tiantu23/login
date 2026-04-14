@@ -6,7 +6,13 @@ $(document).ready(function() {
         'images/slider/3.jpg',
         'images/slider/4.jpg',
         'images/slider/5.jpg',
-        'images/slider/6.jpg'
+        'images/slider/6.jpg',
+        'images/slider/7.jpg',
+        'images/slider/8.jpg',
+        'images/slider/9.jpg',
+        'images/slider/10.jpg',
+        'images/slider/11.jpg',
+        'images/slider/12.jpg',
     ];
     let currentImageIndex = 0;
     const bgContainer = $('#bgImageContainer');

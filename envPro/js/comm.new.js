@@ -6,7 +6,7 @@ $(document).ready(function() {
         currentUser = {
             id: "f9ea5e02-f813-4e1b-ae17-e6a618980f6a",
             name: "环保先锋",
-            avatar: "环"
+            avatar: "6"
         };
     }
 
@@ -17,8 +17,7 @@ $(document).ready(function() {
     // 当前激活的标签页
     let activeTab = "public";
 
-    // 图片预览功能
-    let selectedImages = []; // 存储选中的图片文件
+  let selectedImages = []; // 存储选中的图片文件
     $('#dynamicImages').on('change', function(e) {
         const files = e.target.files;
         if (!files.length) return;
@@ -62,7 +61,7 @@ $(document).ready(function() {
         });
     });
 
-    // 发布动态表单提交
+     // 发布动态表单提交
     $('#dynamicPostForm').on('submit', function(e) {
         e.preventDefault();
         
@@ -130,70 +129,138 @@ $(document).ready(function() {
         renderDynamicList();
     });
 
-    // 删除动态功能
-    $('#dynamicList').on('click', '.delete-btn', function() {
-        const dynamicId = $(this).data('id');
-        
-        // 二次确认删除
-        if (!confirm('确定要删除这条动态吗？删除后无法恢复！')) {
-            return;
-        }
+    // 删除动态功能（修复版）
+$(document).on('click', '.delete-btn', function() {
+    const dynamicId = $(this).data('id');
+    
+    // 二次确认删除
+    if (!confirm('确定要删除这条动态吗？删除后无法恢复！')) {
+        return;
+    }
 
-        // 发送DELETE请求到后端API
-        axios.delete(`http://localhost:3000/api/post/${dynamicId}`, {
-            data: { user_id: currentUser.id }
+    // 发送DELETE请求到后端API
+    axios.delete(`http://localhost:3000/api/post/${dynamicId}`, {
+        data: { user_id: currentUser.id }
+    })
+    .then(response => {
+        if (response.data.success) {
+            // 🔥 关键修复：删除后重新拉取数据，而不是手动删数组
+            fetchPublicDynamics();
+            fetchMyDynamics();
+            
+            alert('动态删除成功！');
+        } else {
+            alert('删除失败：' + response.data.message);
+        }
+    })
+    .catch(error => {
+        console.error('删除动态失败：', error);
+        alert('删除失败，请稍后重试');
+    });
+});
+
+
+      // 点赞功能（最终完美版，解决400）
+$('#dynamicList').off('click').on('click', '.like-btn', function() {
+    const dynamicId = $(this).data('id');
+    const isLiked = $(this).data('liked') === true;
+    const $likeBtn = $(this);
+    const $icon = $likeBtn.find('i');
+    const $count = $likeBtn.find('span');
+
+    if (!isLiked) {
+        // 点赞
+        axios({
+            method: 'POST',
+            url: `http://localhost:3000/api/post/${dynamicId}/like`,
+            data: `user_id=${currentUser.id}`,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .then(response => {
             if (response.data.success) {
-                // 更新本地数据
-                myDynamics = myDynamics.filter(item => item.id !== dynamicId);
-                publicDynamics = publicDynamics.filter(item => item.id !== dynamicId);
-                
-                // 重新渲染列表
-                renderDynamicList();
-                
-                // 提示删除成功
-                alert('动态删除成功！');
-            } else {
-                alert('删除失败：' + response.data.message);
+                $icon.removeClass('fa-heart-o').addClass('fa-heart');
+                $count.text(response.data.like_count);
+                $likeBtn.data('liked', true);
+                updateLocalDynamicLikeStatus(dynamicId, true, response.data.like_count);
             }
         })
         .catch(error => {
-            console.error('删除动态失败：', error);
-            alert('删除失败，请稍后重试');
+            console.error('点赞失败：', error);
+            alert('点赞失败：' + (error.response?.data?.message || '服务器错误'));
         });
-    });
+    } else {
+        // 取消点赞
+        axios({
+            method: 'DELETE',
+            url: `http://localhost:3000/api/post/${dynamicId}/like`,
+            data: `user_id=${currentUser.id}`,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => {
+            if (response.data.success) {
+                $icon.removeClass('fa-heart').addClass('fa-heart-o');
+                $count.text(response.data.like_count);
+                $likeBtn.data('liked', false);
+                updateLocalDynamicLikeStatus(dynamicId, false, response.data.like_count);
+            }
+        })
+        .catch(error => {
+            console.error('取消点赞失败：', error);
+            alert('取消点赞失败');
+        });
+    }
+});
+    // 更新本地动态的点赞状态
+    function updateLocalDynamicLikeStatus(dynamicId, isLiked, likeCount) {
+        // 更新公开动态列表
+        publicDynamics.forEach(dynamic => {
+            if (dynamic.id === dynamicId) {
+                dynamic.isLiked = isLiked;
+                dynamic.likeCount = likeCount;
+            }
+        });
+        
+        // 更新我的动态列表
+        myDynamics.forEach(dynamic => {
+            if (dynamic.id === dynamicId) {
+                dynamic.isLiked = isLiked;
+                dynamic.likeCount = likeCount;
+            }
+        });
+    }
 
     // 获取公开动态
-    function fetchPublicDynamics() {
-        axios.get('http://localhost:3000/api/post/public')
-            .then(response => {
-                if (response.data.success) {
-                    publicDynamics = response.data.posts.map(post => ({
-                        id: post.id,
-                        userId: post.user_id,
-                        userName: post.user_id === currentUser.id ? currentUser.name : "其他用户",
-                        userAvatar: post.user_id === currentUser.id ? currentUser.avatar : "他",
-                        content: post.content,
-                        images: post.image_url ? [post.image_url] : [],
-                        createTime: new Date(post.created_at).toLocaleString(),
-                        privacy: post.permission
-                    }));
-                    if (activeTab === "public") {
-                        renderDynamicList();
-                    }
-                } else {
-                    console.error('获取公开动态失败：', response.data.message);
+function fetchPublicDynamics() {
+    axios.get(`http://localhost:3000/api/post/public?user_id=${currentUser.id}`)
+        .then(response => {
+            if (response.data.success) {
+                publicDynamics = response.data.posts.map(post => ({
+                    id: post.id,
+                    userId: post.user_id,
+                    userName: post.user_id === currentUser.id ? currentUser.name : "其他用户",
+                    userAvatar: post.user_id === currentUser.id ? currentUser.avatar : "他",
+                    content: post.content,
+                    images: post.image_url ? post.image_url.split(',').filter(url => url.trim()) : [],
+                    createTime: new Date(post.created_at).toLocaleString(),
+                    privacy: post.permission,
+                    likeCount: post.like_count || 0,
+                    isLiked: post.is_liked || false
+                }));
+                if (activeTab === "public") {
+                    renderDynamicList();
                 }
-            })
-            .catch(error => {
-                console.error('获取公开动态失败：', error);
-            });
-    }
+            } else {
+                console.error('获取公开动态失败：', response.data.message);
+            }
+        })
+        .catch(error => {
+            console.error('获取公开动态失败：', error);
+        });
+}
 
     // 获取我的动态
     function fetchMyDynamics() {
-        axios.get(`http://localhost:3000/api/post/user/${currentUser.id}`)
+        axios.get(`http://localhost:3000/api/post/user/${currentUser.id}?user_id=${currentUser.id}`)
             .then(response => {
                 if (response.data.success) {
                     myDynamics = response.data.posts.map(post => ({
@@ -202,9 +269,11 @@ $(document).ready(function() {
                         userName: currentUser.name,
                         userAvatar: currentUser.avatar,
                         content: post.content,
-                        images: post.image_url ? [post.image_url] : [],
+                        images: post.image_url ? post.image_url.split(',').filter(url => url.trim()) : [],
                         createTime: new Date(post.created_at).toLocaleString(),
-                        privacy: post.permission
+                        privacy: post.permission,
+                        likeCount: post.like_count || 0,
+                        isLiked: post.is_liked || false
                     }));
                     if (activeTab === "my-all") {
                         renderDynamicList();
@@ -218,8 +287,7 @@ $(document).ready(function() {
             });
     }
 
-    // 渲染动态列表
-    function renderDynamicList() {
+   function renderDynamicList() {
         const $dynamicList = $('#dynamicList');
         $dynamicList.empty();
 
@@ -272,6 +340,30 @@ $(document).ready(function() {
                 ? `<div class="delete-btn" data-id="${dynamic.id}"><i class="fa fa-trash-o"></i></div>` 
                 : '';
 
+            // 构建点赞相关元素
+            let likeElement = '';
+            if (dynamic.userId !== currentUser.id) {
+                // 其他人的动态：显示点赞按钮和数量
+                likeElement = `
+                    <div class="dynamic-footer">
+                        <div class="like-btn" data-id="${dynamic.id}" data-liked="${dynamic.isLiked}">
+                            <i class="fa ${dynamic.isLiked ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            <span>${dynamic.likeCount}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 自己的动态：只显示点赞数量，不显示点赞按钮
+                likeElement = `
+                    <div class="dynamic-footer">
+                        <div class="like-count">
+                            <i class="fa fa-heart"></i>
+                            <span>${dynamic.likeCount}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
             // 构建动态项HTML
             const dynamicItem = `
                 <div class="dynamic-item" data-id="${dynamic.id}">
@@ -285,6 +377,7 @@ $(document).ready(function() {
                     </div>
                     <div class="dynamic-content">${dynamic.content}</div>
                     ${imagesHtml}
+                    ${likeElement}
                 </div>
             `;
 

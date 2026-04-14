@@ -311,3 +311,253 @@
             min-height: calc(100vh - 250px);
         }
     }
+    .recycle-tab-panel {
+    padding: 0;
+    display: none;
+}
+.recycle-tab-panel.active {
+    display: block;
+}
+.clean-section-header {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* 闲置共享板块 - 展示区略宽于发布区，整体与AI板块一致 */
+.idle-share-panel {
+    padding: 0 !important;
+}
+.idle-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 15px 20px;
+    max-width: 1050px; /* 整体宽度，可按需调整 */
+    margin: 0 auto;   /* 居中对齐AI板块 */
+}
+/* 展示区略宽（55%） */
+.idle-item-list {
+    flex: 1.5;       /* 比发布区宽一点 */
+    max-width: 580px;
+    min-width: 260px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+/* 发布区稍窄（45%） */
+.idle-publish-form {
+    flex: 1;         /* 基础宽度 */
+    max-width: 340px;
+    min-width: 240px;
+}
+.idle-item-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px; /* 减小间距更紧凑 */
+    background-color: white;
+}
+.idle-item-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.idle-item-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+.idle-item-desc {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+    height: 50px; /* 缩短描述高度适配窄宽度 */
+    overflow: hidden;
+}
+.idle-item-meta {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+.contact-author-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+}
+.contact-author-btn:hover {
+    background-color: #0b7dda;
+}
+.form-group {
+    margin-bottom: 18px;
+}
+.radio-group {
+    margin-left: 15px;
+}
+.radio-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: none;
+}
+.btn-submit:hover {
+    background-color: #45a049;
+}
+.image-preview {
+    margin-top: 8px;
+}
+.image-preview img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin: 4px;
+}
+/* 动态标签 */
+.dynamic-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+.dynamic-tabs .tab-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+.dynamic-tabs .tab-item.active {
+    border-bottom: 2px solid #4CAF50;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* 列表容器 */
+.dynamic-list {
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 400px;
+}
+
+/* 闲置卡片 */
+.idle-item {
+    position: relative;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+/* 自己发的才显示删除 */
+.idle-item.my-idle .delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ff4444;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* 图片占满宽度 */
+.idle-img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.idle-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 信息全部在图片下方 */
+.idle-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+.idle-cate {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+.idle-type {
+    font-size: 13px;
+    color: #4CAF50;
+    margin-bottom: 8px;
+}
+
+/* 蓝色联系按钮 */
+.contact-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+/* 发布者、时间在最底部 */
+.idle-footer {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+/* 发布表单 */
+.post-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 25px !important;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* 图片预览 */
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+}
+.preview-item {
+    position: relative;
+}
+.preview-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.remove-img {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: white;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+}

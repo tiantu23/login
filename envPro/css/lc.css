@@ -82,7 +82,7 @@
     }
     
     .carbon-data-table tr:hover {
-        background-color: #f8f9fa;
+        background-color: #28a745;
     }
     
     /* 路线计算工具样式 */
@@ -130,7 +130,7 @@
     .result-card {
         margin-top: 25px;
         padding: 20px;
-        background-color: #f1f8e9;
+        background-color: #ffffff;
         border-radius: 6px;
         border-left: 4px solid #28a745;
         display: none;
@@ -548,7 +548,7 @@
     .result-card {
         margin-top: 25px;
         padding: 20px;
-        background-color: #f1f8e9;
+        background-color: #ffffff;
         border-radius: 8px;
         border-left: 4px solid #28a745;
         display: none;
@@ -621,5 +621,39 @@
         .transport-item .distance-input {
             flex: 1 1 100%;
             margin-bottom: 10px;
+        }
+    }
+    
+    /* 图表容器样式 */
+    .chart-container {
+        margin-top: 30px;
+        display: none;
+    }
+    
+    .chart-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        border-left: 4px solid #28a745;
+        height: 100%;
+    }
+    
+    .chart-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #28a745;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .chart {
+        height: 300px;
+        width: 100%;
+    }
+    
+    /* 图表响应式适配 */
+    @media (max-width: 768px) {
+        .chart {
+            height: 250px;
         }
     }

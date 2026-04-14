@@ -74,6 +74,7 @@
                     <div class="text-center" id="emptyTip">
                         <i class="fa fa-leaf" style="font-size: 48px; color: #4CAF50; margin-bottom: 15px;"></i>
                         <p>暂无社区动态，快来发布第一条环保动态吧！</p>
+                        
                     </div>
                 </div>
             </div>
@@ -114,27 +115,51 @@
 </section>
 
 <footer class="background-two">
-	<div class="container">
-		<div class="row">
-			<div class="clean-footer-content">
-				<div class="clean-footer-logo wow bounceIn" data-wow-offset="0">
-					<a href="index.html">
-						<img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
-					</a>
-				</div>
-                 <div class="">队名：3Q队</div>
-                <div class="">电子邮箱：xxxxxxxxxx@qq.com</div>
-                <div class="">联系电话：xxxx-xxxxxx</div>
-				<p class="clean-copyright-info">Copyright &copy; 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
-				<ul class="clean-footer-social-info">
-					<li><a href=""><i class="fa fa-weixin"></i></a></li>
-					<li><a href=""><i class="fa fa-weibo"></i></a></li>
-					<li><a href=""><i class="fa fa-qq"></i></a></li>
-					<li><a href=""><i class="fa fa-envelope"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="clean-footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+
+                <!-- 左侧：Logo + 信息 -->
+                <div style="flex: 0 0 auto; text-align: left;">
+                    <div class="clean-footer-logo wow bounceIn" data-wow-offset="0" style="margin:0 0 10px 0;">
+                        <a href="index.html">
+                            <img id="logo-footer" src="images/logo.png" alt="绿色环保" height="100px">
+                        </a>
+                    </div>
+                </div>
+                <div style="flex: 0 0 auto; text-align: center;">
+                    <div>队名：3Q队</div>
+                    <div>电子邮箱：3339363562@qq.com</div>
+                    <div>联系电话：xxxx-xxxxxx</div>
+                    <p class="clean-copyright-info" style="margin: 10px 0 0 0;">Copyright © 2026 绿色环保平台 版权所有 | 践行环保理念 共建绿色家园</p>
+                </div>
+                <!-- 右侧：社交图标 2×2 排列 -->
+                <div style="flex: 0 0 auto;">
+                    <ul class="clean-footer-social-info" style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; text-align: center;">
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-weixin" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://weibo.com/" target="_blank"><i class="fa fa-weibo" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-qq" style="font-size:24px;"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:showFooterQrcode()"><i class="fa fa-envelope" style="font-size:24px;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="qrcodeModal">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeFooterQrcode()">×</span>
+            <img src="images/footer.jpg" alt="联系二维码">
+        </div>
+    </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -143,6 +168,6 @@
 <script src="js/comm.js"></script>
 <script src="js/dingbu.white.js"></script>
 <script src="js/comm.new.js"></script>
-
+<script src="js/towwm.js"></script>
 </body>
 </html>

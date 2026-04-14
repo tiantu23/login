@@ -4,6 +4,8 @@ const bcryptjs = require('bcryptjs'); // 引入bcryptjs用于密码哈希比较
 const { supabase } = require('../db'); // 引入Supabase配置
 const { sendRegisterCode, sendVerifyCode } = require('../../util/emailUtil');
 const { saveRegisterCode, verifyRegisterCode, saveCode, verifyCode, deleteCode } = require('../../util/codeCacheUtil');
+const path = require('path');
+const fs = require('fs');
 
 
 router.post('/send-register-code', async (req, res) => {
@@ -245,6 +247,17 @@ router.get('/info/:userId', async (req, res) => {
     // 如果用户表中没有这个字段，可以根据动态数据计算
     const carbonReduction = user.carbon_reduction || 0;
 
+    // 实时计算用户总积分（所有打卡记录的points字段求和）
+  const { data: checkinRecords, error: checkinError } = await supabase
+  .from('checkin_records')
+  .select('points_earned')
+  .eq('user_id', userId);
+
+if (checkinError) throw checkinError;
+
+// 👇 修复代码：兜底空数组
+const totalPoints = (checkinRecords || []).reduce((sum, record) => sum + (record.points_earned || 0), 0);
+
     res.json({ 
       success: true, 
       user: {
@@ -258,7 +271,8 @@ router.get('/info/:userId', async (req, res) => {
         avatar: user.avatar || null,
         created_at: user.created_at,
         dynamic_count: dynamicCount || 0,
-        carbon_reduction: carbonReduction
+        carbon_reduction: carbonReduction,
+        total_points: totalPoints
       } 
     });
   } catch (err) {
@@ -763,6 +777,52 @@ router.post('/reset-password', async (req, res) => {
   } catch (err) {
     console.error('重置密码异常:', err);
     res.status(500).json({ success: false, message: '服务器错误' });
+  }
+});
+
+// 上传头像接口（使用multer中间件）
+router.post('/:userId/upload-avatar', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    console.log('上传头像，用户ID:', userId);
+
+    // 检查用户是否存在
+    const { data: userList, error: userError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('id', userId)
+      .limit(1);
+    
+    if (userError) throw userError;
+    const user = userList && userList.length > 0 ? userList[0] : null;
+    if (!user) {
+      return res.status(404).json({ success: false, message: '用户不存在' });
+    }
+
+    // 检查是否有文件上传（multer使用req.file）
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: '请选择要上传的头像文件' });
+    }
+
+    const avatarFile = req.file;
+
+    // 更新用户头像URL
+    const avatarUrl = `/uploads/${avatarFile.filename}`;
+    const { data: updateResult, error: updateError } = await supabase
+      .from('users')
+      .update({ avatar: avatarUrl })
+      .eq('id', userId);
+    
+    if (updateError) throw updateError;
+
+    res.json({ 
+      success: true, 
+      message: '头像上传成功',
+      avatarUrl: avatarUrl
+    });
+  } catch (err) {
+    console.error('上传头像失败:', err);
+    res.status(500).json({ success: false, message: '上传头像失败', error: err.message });
   }
 });
 

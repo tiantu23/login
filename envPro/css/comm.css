@@ -129,14 +129,33 @@
     .dynamic-footer {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         color: #666;
         font-size: 14px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
     }
     .dynamic-footer .like-btn {
-        margin-right: 20px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 20px;
     }
     .dynamic-footer .like-btn:hover {
+        color: #4CAF50;
+        background-color: rgba(76, 175, 80, 0.1);
+    }
+    .dynamic-footer .like-btn i {
+        margin-right: 5px;
+        font-size: 16px;
+    }
+    .dynamic-footer .like-btn.liked {
+        color: #4CAF50;
+    }
+    .dynamic-footer .like-btn.liked i {
         color: #4CAF50;
     }
     /* 按钮样式 */

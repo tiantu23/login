@@ -1,0 +1,8 @@
+# 核心：访问根地址时，直接跳转到 envPro 里的 login.html
+/ /envPro/login.html 302
+
+# 保留 index.html 的访问路径（可通过 /envPro/index.html 正常访问）
+/envPro/index.html /envPro/index.html 200
+
+# 其他不存在的地址，跳转到 envPro 里的 404.html（取消自动跳转）
+/* /envPro/404.html 404
